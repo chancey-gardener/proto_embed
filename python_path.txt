@@ -1,0 +1,11 @@
+
+/usr/lib/python36.zip
+/usr/lib/python3.6
+/usr/lib/python3.6/lib-dynload
+/home/chanceygardener/.local/lib/python3.6/site-packages
+/home/chanceygardener/LegalNLP/legal_database/synt_inf
+/usr/local/lib/python3.6/dist-packages
+/usr/local/lib/python3.6/dist-packages/setuptools-28.8.0-py3.6.egg
+/usr/local/lib/python3.6/dist-packages/pip-9.0.1-py3.6.egg
+/usr/lib/python3/dist-packages
+/usr/lib/python3.6/dist-packages
