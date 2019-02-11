@@ -5,16 +5,30 @@ cwd = pwd()
 cd('/usr/lib/python3.6')
 import sys, json
 from collections import Counter
-from numpy import array, float64, e, sqrt, linalg
+import numpy as np
 #from multiprocessing import pool
 
 PUNCT = '.,;:?!'
 APOST = "'"
 
 
+def shannon_entropy(vec):
+    n_nodes = len(vec)
+    if n_nodes <= 1:
+        return 0
+    else:
+        counts = np.bincount(vec)
+        nzeros = counts[np.nonzero(counts)] / n_nodes
+        n_nonzero = len(nzeros)
+        if n_nonzero <= 1:
+            return 0
+        else:
+            return - np.sum(nzeros*np.log(np.nzeros))/np.log(n_nonzero)
+
+
 def ev2norm(vec):
         '''return the square root of the sum of squares of a list'''
-        return sqrt(sum(s**2 for s in vec))
+        return np.sqrt(sum(s**2 for s in vec))
 
 def matrix_mean(mat):
         out = []
@@ -37,7 +51,7 @@ def variance(v):
 #############DIMENSIONALITY REDUCTION FUNCTIONS:
 
 def tsne(dist):
-    exper = lambda vec: e** ((0-linalg.norm(xiv-vec)**2)/tsig)
+    exper = lambda vec: np.e** ((0-np.linalg.norm(xiv-vec)**2)/tsig)
     outmat = []
     for k in dist:
         dvec = dist[k]
@@ -298,7 +312,7 @@ if __name__ == '__main__':
         print('Decompressing stored vectors...')
         w2vs = {k:decomp(w2vs[k]) for k in w2vs}
         # convert to numpy stuff
-        w2vs = {k:array(list(map(float64, w2vs[k]))) for k in w2vs}
+        w2vs = {k:np.array(list(map(np.float64, w2vs[k]))) for k in w2vs}
         # dimensionality reduction stuff here
         #t1 = w2vs ['ship']
         #t2 = w2vs['water']
