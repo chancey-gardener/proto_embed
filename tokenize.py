@@ -1,67 +1,20 @@
-#!/usr/bin/python3
+#!/usr/bin/python3.6
+# -*- coding: utf-8 -*-
 from os import chdir as cd, getcwd as pwd
 cwd = pwd()
 cd('/usr/lib/python3.6')
 import sys, json
 from collections import Counter
-from math import sqrt, e
+from numpy import array, float64, e, sqrt, linalg
 #from multiprocessing import pool
-cd(cwd)
-
-
 
 PUNCT = '.,;:?!'
 APOST = "'"
 
-def tokenize(text):
-        out = []
-        idx = 0
-        print('\ntokenizing...\n')
-        try:
-                while idx < len(text):
-                        wordbuff = ''
-                        char = text[idx]
-                        # check id of character and do stuff accordingly
-                        while char.isspace():
-                                idx += 1
-                                char = text[idx]
-                        while char.isalnum():
-                                wordbuff += char
-                                idx += 1
-                                char = text[idx]
-                        # this allows us to descend to the correct blocks when necessary
-                        if wordbuff != '':
-                                idx += 1
-                                out.append(wordbuff)
-                                continue
-                        if char == APOST:
-                                # the conditional below allows the tokenizer to 
-                                # group "n't" as a token, rather than 't
-                                # TODO make this generalize a bit more
-                                if text[idx-1].lower() == 'n':
-                                        wordbuff = 'n' + wordbuff
-                                        # put the word sans "n't" in there
-                                wordbuff += char # add the apostrophe to wordbuff
-                                # increment to post-apostrophe stuff
-                                idx += 1
-                                char = text[idx]
-                                while char.isalnum():
-                                        wordbuff += char
-                                        idx += 1
-                                        char = text[idx]
-                        if wordbuff == '':
-                                while char in PUNCT:
-                                        wordbuff += char
-                                        idx += 1
-                                        char = text[idx]
-                                idx += 1
-                                continue
-                        # fallback increment
-                        idx +=1
-                        out.append(wordbuff)
-        except IndexError:
-                return out
-        return out
+
+def ev2norm(vec):
+        '''return the square root of the sum of squares of a list'''
+        return sqrt(sum(s**2 for s in vec))
 
 def matrix_mean(mat):
         out = []
@@ -79,9 +32,151 @@ def variance(v):
         mean = vector_mean(v)
         return  sum((i-mean)**2 for i in v)/len(v)
         
+# below starts the word embedder class ##############
 
-def ngram(toks, n):
-        '''Compute word embeddings given a tokenized text
+#############DIMENSIONALITY REDUCTION FUNCTIONS:
+
+def tsne(dist):
+    exper = lambda vec: e** ((0-linalg.norm(xiv-vec)**2)/tsig)
+    outmat = []
+    for k in dist:
+        dvec = dist[k]
+        diffscore = exper(dvec)
+        denexp += diffscore
+           # print(diffscore)
+        count += 1
+        prop = round((count/span)*100, 2)
+        if prop%1 == 0:
+            print('{}% complete'.format(prop))
+            print('{}/{}'.format(numexp,denexp))
+
+def tsne(xiv, xjv, dist, sig_squared_i=1/sqrt(2)):
+        '''where xi and xj are word keys pointing to vector values in dist.
+            NOTE: sig_squred_i is set to constant for now, fix when
+            a better strategy can be decided on'''
+        tsig = sig_squared_i * 2
+            ####################
+            # NOTE: Ok, so the main
+            # problem here is that 
+            # tsig (the variance of 
+            # the p value being conditioned
+            # on (pretty much any vector
+            # from this set)) is turning
+            # out to be so close to 0
+            # that dividing by it produces
+            # a massive number, taking 
+            # its negative and exp-ing it
+            # produces a value too close to 0
+            # for python to handle (is there a double type?
+            ##############################################
+            # get numerator of expression for p(j|i)
+        
+        numexp = exper(xjv)
+        print("numexp: {}".format(numexp))
+        print("tsig: {}".format(tsig))
+        # well now? we're gonna compute a motherfuckin denominator
+        denexp = 0
+     # TODO: the values computed in this for loop have got to be stored
+    #   warp = pool(4)
+    #   noti = (dist[k] for k in dist if dist[k] != xi)
+        print('Computing covariance matrix...')
+        #denexp = sum(warp.map(exper, noti))
+        denexp = 0
+        count = 0 # just to show us how
+        span = len(dist)
+        
+        pji = numexp/denexp
+        return pji
+
+
+dimred = {
+    
+        'TSNE': tsne
+}
+
+
+class WordEmbedder:
+
+    '''feed me raw text via the tokenize method,
+    '''
+    def __init__(self):
+        self.models={}
+        self._lexicon = set()
+        self._lexicon_size = len(self.lexicon)
+        self.entries = set()
+
+    def updateLexicon(self, newvoc):
+        '''newvoc should be a set'''
+        if not isinstance(newvoc, set):
+            raise TypeError("New vocabulary param should be represented by set")
+        else:
+            self.lexicon.add(newvoc)
+            self.vocab_size = len(self.lexicon)
+
+    def getLexiconSize(self):
+        return self._lexicon_size
+
+    def getLexicon():
+        return self._lexicon
+    
+    def tokenize(self, text):
+        out = []
+        idx = 0
+        print('\ntokenizing...\n')
+        while idx < len(text):
+            try:
+                wordbuff = ''
+                char = text[idx]
+                # check id of character and do stuff accordingly
+                while char.isspace():
+                        idx += 1
+                        char = text[idx]
+                while char.isalnum():
+                        wordbuff += char
+                        idx += 1
+                        char = text[idx]
+                # this allows us to descend to the correct blocks when necessary
+                if wordbuff != '':
+                        idx += 1
+                        out.append(wordbuff)
+                        continue
+                if char == APOST:
+                        # the conditional below allows the tokenizer to 
+                        # group "n't" as a token, rather than 't
+                        # TODO make this generalize a bit more
+                        if text[idx-1].lower() == 'n':
+                                wordbuff = 'n' + wordbuff
+                                # put the word sans "n't" in there
+                        wordbuff += char # add the apostrophe to wordbuff
+                        # increment to post-apostrophe stuff
+                        idx += 1
+                        char = text[idx]
+                        while char.isalnum():
+                                wordbuff += char
+                                idx += 1
+                                char = text[idx]
+                if wordbuff == '':
+                        while char in PUNCT:
+                                wordbuff += char
+                                idx += 1
+                                char = text[idx]
+                        idx += 1
+                        continue
+                # fallback increment
+                idx +=1
+                out.append(wordbuff)
+            except IndexError:
+                out.append(wordbuff)
+                break
+        # update lexicon
+        self.updateLexicon(set([i.lower().strip() 
+            for i in out]))
+        return out
+
+
+
+    def getEnvsFromTokens(self, toks, n):
+            '''Compute word embeddings given a tokenized text
                 returns hash table mapping unique words in
                 text to word embeddings computed from
                 that text '''
@@ -107,10 +202,10 @@ def ngram(toks, n):
         return out
         
 
-def vcomp(emb):
-        '''Compress sparse vector to hash table w/idx for keys and nonzero values as table values '''
-        i = 0
-        max_ind = len(emb)
+    def vCompress(self, emb):
+            '''Compress sparse vector to hash table w/idx for keys and nonzero values as table values '''
+            i = 0
+            max_ind = len(emb)
         out = {}
         while i < max_ind:
                 val = emb[i]
@@ -121,7 +216,7 @@ def vcomp(emb):
         out['MAX'] = max_ind
         return out
 
-def decomp(tab):
+    def vDecompress(self, tab):
         # build list of length
         out = [0]*tab['MAX'] 
         del tab['MAX']
@@ -129,51 +224,26 @@ def decomp(tab):
                 out[key] += tab[key]
         return out              
 
-def vdiff(vi, vj):
-        '''computes the difference of two vectors (python lists)'''
-#       return [vi[i]-vj[i] for i in range(len(vi))]
-        out = []
-        for i in range(len(vi)):
-                a = vi[i]
-                b = vj[i]
-               # print("t1[ {} ]: {}".format(i, a))
-               # print("t2[ {} ]: {}".format(i, b))
-                diff = a - b
-                out.append(diff)
-        return out
-def ev2norm(vec):
-        return sqrt(sum(s**2 for s in vec))
 
-def pj_given_i(xi, xj, dist):
-        '''where xi and xj are vectors'''
-        # compute 2*sigma^2
-        tsig = 2*variance(xi)
-        # get numerator of expression for p(j|i)
-        exper = lambda vec: e** ((0-ev2norm(vdiff(xi, vec)))/tsig)
-        numexp = exper(xj)
-        # well now? we're gonna compute a motherfuckin denominator
-        denexp = 0
-        # TODO: the values computed in this for loop have got to be stored
-#       warp = pool(4)
-#       noti = (dist[k] for k in dist if dist[k] != xi)
-        print('Computing covariance matrix...')
-        #denexp = sum(warp.map(exper, noti))
-        denexp = 0
-        count = 0 # just to show us how
-        span = len(dist)
-        for k in dist:
-            dvec = dist[k]
-            if dvec != xi:
-                diffscore = exper(dvec)
-                denexp += diffscore
-               # print(diffscore)
-            count += 1
-            prop = round((count/span)*100, 2)
-            if prop%1 == 0:
-                print('{}% complete'.format(prop))
-                print('{}/{}'.format(numexp,denexp))
-        pji = numexp/denexp
-        return pji
+class Model:
+
+    def __init__(self, window, data, dimensionality_reduction_mode='TSNE'):
+            
+            self.window = window
+            self.data = data
+            self._dimredmode = dimred[dimensionality_reduction_mode]
+
+
+    def __getitem__(self, key):
+        if isinstance(key, str):
+            return self.data[key]
+        else:
+            raise ValueError('Model lookup is by word.')
+
+    def reduceDimensionality(self):
+        self._dimredmode() 
+
+    
         
 if __name__ == '__main__':
         def update():
@@ -227,11 +297,17 @@ if __name__ == '__main__':
         tocp = w2vs['ship']
         print('Decompressing stored vectors...')
         w2vs = {k:decomp(w2vs[k]) for k in w2vs}
+        # convert to numpy stuff
+        w2vs = {k:array(list(map(float64, w2vs[k]))) for k in w2vs}
         # dimensionality reduction stuff here
-        t1 = w2vs ['ship']
-        t2 = w2vs['water']
-        pji = pj_given_i(t1, t2, w2vs)
+        #t1 = w2vs ['ship']
+        #t2 = w2vs['water']
+# feed it to pj_given_i
+        ship = 'ship'
+        water = 'water'
+        pji = pj_given_i(ship, water, w2vs)
         print('Probability of water given ship: {}'.format(pji))
+
         # write embeddings to json file
         if recompute:
                 outfname = "{}_n_{}_{}.json".format(infile,nhood, tag)
