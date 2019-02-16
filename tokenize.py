@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from os import chdir as cd, getcwd as pwd
 cwd = pwd()
-cd('/usr/lib/python3.6')
+#cd('/usr/lib/python3.6')
 import sys, json
 from collections import Counter
 import numpy as np
@@ -116,8 +116,8 @@ class WordEmbedder:
     def __init__(self):
         self.models={}
         self._lexicon = set()
-        self._lexicon_size = len(self.lexicon)
-        self.entries = set()
+        self._lexicon_size = len(self._lexicon)
+        self.data = {}
 
     def updateLexicon(self, newvoc):
         '''newvoc should be a set'''
@@ -187,13 +187,19 @@ class WordEmbedder:
             for i in out]))
         return out
 
-
+    def unpack(self, fpath):
+        with open(fpath) as f:
+            dat = fpath.read()
+            dat = json.loads.read()
+        dat = dict(map(self.vDecompress, dat))
+        dat = {k:np.array(list(map(np.float64, w2vs[k]))) for k in dat}
+        
 
     def getEnvsFromTokens(self, toks, n):
         '''Compute word embeddings given a tokenized text
         returns hash table mapping unique words in
         text to word embeddings computed from
-        that text '''
+        that text'''
         out = {word:[] for word in set(toks)}
         schema = sorted(out.keys())
         dims = len(schema)
@@ -214,8 +220,24 @@ class WordEmbedder:
         print('computing word vectors...')
         out = {k:matrix_mean(out[k]) for k in out}
         return out
-        
+    
 
+    def newModel(self, nbrhd, dselect, dredstrat, mkey=None):
+        if mkey is None:
+                dat_param = '-'.join(dselect)
+                mkey = "{}_window_{}_data_{}".format(dredstrat, nbrhd, dat_param)
+        self.models[mkey] = Model(nbrhd, dselect, self, 
+                                 dimensionality_reduction_mode=dredstrat)
+        print("reducing corpus environment vectors via {}...".format(dredstrat))
+        # call embedder's compileData method, then apply dimensionality reduction
+        # to its output
+        # Ok, so the WordEmbedder class should store compressed env vectors,
+        # write to file, so 
+        for datafield in self.dselect:
+                dset = self.data[datafield]
+                
+        
+        
     def vCompress(self, emb):
         '''Compress sparse vector to hash table w/idx for keys and nonzero values as table values '''
         i = 0
@@ -241,11 +263,13 @@ class WordEmbedder:
 
 class Model:
 
-    def __init__(self, window, data, dimensionality_reduction_mode='TSNE'):
+    def __init__(self, window, data, embedder, dimensionality_reduction_mode='TSNE'):
             
             self.window = window
             self.data = data
             self._dimredmode = dimred[dimensionality_reduction_mode]
+            self._embeddings = []
+
 
 
     def __getitem__(self, key):
@@ -270,15 +294,16 @@ if __name__ == '__main__':
         tag = 'table_compress'
         compressed = False
         recompute = False
+        prcsr = WordEmbedder()
         #infile = sys.argv[1]
         infile = 'paradise_lost.txt.rtf'
         with open(infile) as ifdat:
                 text = ifdat.read()
         if recompute:
                 # tokenize and normalize
-                tokenized = tokenize(text)
+                tokenized = prcsr.tokenize(text)
                 tokenized = [l.lower() for l in tokenized]
-                # compute word frequencies.
+                # compute word frequencies. TODO: make this block a WordEmbedder method
                 freqs = Counter(tokenized)
                 total = len(freqs)
                 freqs = {k:freqs[k]/total for k in freqs}
@@ -288,7 +313,7 @@ if __name__ == '__main__':
                         comp = 1
                         print('Compressing...')
                         for word in w2vs:
-                                w2vs[word]  = vcomp(w2vs[word])
+                                w2vs[word]  = prcsr.vCompress(w2vs[word])
                 else:
                         comp = 0
                 cmpd_lengths = [len(w2vs[v])-comp for v in w2vs]
@@ -310,7 +335,7 @@ if __name__ == '__main__':
                         w2vs[w] = buff
         tocp = w2vs['ship']
         print('Decompressing stored vectors...')
-        w2vs = {k:decomp(w2vs[k]) for k in w2vs}
+        w2vs = {k:prcsr.vDecompress(w2vs[k]) for k in w2vs}
         # convert to numpy stuff
         w2vs = {k:np.array(list(map(np.float64, w2vs[k]))) for k in w2vs}
         # dimensionality reduction stuff here
@@ -319,7 +344,7 @@ if __name__ == '__main__':
 # feed it to pj_given_i
         ship = 'ship'
         water = 'water'
-        pji = pj_given_i(ship, water, w2vs)
+        pji = prcsr.reduceDimensionality(ship, water, w2vs)
         print('Probability of water given ship: {}'.format(pji))
 
         # write embeddings to json file
