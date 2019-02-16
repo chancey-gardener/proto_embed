@@ -64,7 +64,7 @@ def tsne(dist):
             print('{}% complete'.format(prop))
             print('{}/{}'.format(numexp,denexp))
 
-def tsne(xiv, xjv, dist, sig_squared_i=1/sqrt(2)):
+def tsne(xiv, xjv, dist, sig_squared_i=1/np.sqrt(2)):
         '''where xi and xj are word keys pointing to vector values in dist.
             NOTE: sig_squred_i is set to constant for now, fix when
             a better strategy can be decided on'''
@@ -190,10 +190,10 @@ class WordEmbedder:
 
 
     def getEnvsFromTokens(self, toks, n):
-            '''Compute word embeddings given a tokenized text
-                returns hash table mapping unique words in
-                text to word embeddings computed from
-                that text '''
+        '''Compute word embeddings given a tokenized text
+        returns hash table mapping unique words in
+        text to word embeddings computed from
+        that text '''
         out = {word:[] for word in set(toks)}
         schema = sorted(out.keys())
         dims = len(schema)
@@ -217,9 +217,9 @@ class WordEmbedder:
         
 
     def vCompress(self, emb):
-            '''Compress sparse vector to hash table w/idx for keys and nonzero values as table values '''
-            i = 0
-            max_ind = len(emb)
+        '''Compress sparse vector to hash table w/idx for keys and nonzero values as table values '''
+        i = 0
+        max_ind = len(emb)
         out = {}
         while i < max_ind:
                 val = emb[i]
