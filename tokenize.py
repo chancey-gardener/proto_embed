@@ -1,5 +1,6 @@
 #!/usr/bin/python3.6
 # -*- coding: utf-8 -*-
+from abc import ABC
 from os import chdir as cd, getcwd as pwd
 cwd = pwd()
 #cd('/usr/lib/python3.6')
@@ -233,9 +234,9 @@ class WordEmbedder:
         # to its output
         # Ok, so the WordEmbedder class should store compressed env vectors,
         # write to file, so 
-        for datafield in self.dselect:
-                dset = self.data[datafield]
-                
+        for datafield in dselect:
+            dset = self.data[datafield]
+                            
         
         
     def vCompress(self, emb):
@@ -295,6 +296,7 @@ if __name__ == '__main__':
         compressed = False
         recompute = False
         prcsr = WordEmbedder()
+        mk = 'test_mod'
         #infile = sys.argv[1]
         infile = 'paradise_lost.txt.rtf'
         with open(infile) as ifdat:
@@ -344,7 +346,8 @@ if __name__ == '__main__':
 # feed it to pj_given_i
         ship = 'ship'
         water = 'water'
-        pji = prcsr.reduceDimensionality(ship, water, w2vs)
+        prcsr.newModel(4, ('law', 'lit'), 'TSNE', mkey=mk)
+        pji = prcsr[mk].reduceDimensionality()
         print('Probability of water given ship: {}'.format(pji))
 
         # write embeddings to json file
