@@ -51,7 +51,7 @@ def variance(v):
 
 #############DIMENSIONALITY REDUCTION FUNCTIONS:
 
-def tsne(dist):
+def scratchTSNE(dist):
     exper = lambda vec: np.e** ((0-np.linalg.norm(xiv-vec)**2)/tsig)
     outmat = []
     for k in dist:
@@ -65,7 +65,7 @@ def tsne(dist):
             print('{}% complete'.format(prop))
             print('{}/{}'.format(numexp,denexp))
 
-def tsne(xiv, xjv, dist, sig_squared_i=1/np.sqrt(2)):
+def pj_given_i(xiv, xjv, dist, sig_squared_i=1/np.sqrt(2)):
         '''where xi and xj are word keys pointing to vector values in dist.
             NOTE: sig_squred_i is set to constant for now, fix when
             a better strategy can be decided on'''
@@ -106,7 +106,7 @@ def tsne(xiv, xjv, dist, sig_squared_i=1/np.sqrt(2)):
 
 dimred = {
     
-        'TSNE': tsne
+        'TSNE': TSNE
 }
 
 
@@ -120,6 +120,9 @@ class WordEmbedder:
         self._lexicon_size = len(self._lexicon)
         self.data = {}
         self.dataPath = datpath
+    
+    def __getitem__(self, key):
+        return self.models[key]
 
     def updateLexicon(self, newvoc):
         '''newvoc should be a set'''
@@ -230,7 +233,6 @@ class WordEmbedder:
                 mkey = "{}_window_{}_data_{}".format(dredstrat, nbrhd, dat_param)
         self.models[mkey] = Model(nbrhd, dselect, self, 
                                  dimensionality_reduction_mode=dredstrat)
-        print("reducing corpus environment vectors via {}...".format(dredstrat))
         # call embedder's compileData method, then apply dimensionality reduction
         # to its output
         # Ok, so the WordEmbedder class should store compressed env vectors,
@@ -277,12 +279,15 @@ class WordEmbedder:
 
 
 class Model:
-
+    # TODO: migrate toward passing map args with both modename and
+    # specific args
     def __init__(self, window, data, embedder, dimensionality_reduction_mode='TSNE'):
             
             self.window = window
             self.data = data
-            self._dimredmode = dimred[dimensionality_reduction_mode]
+            dmode = dimredmode[dimensionality_reduction_mode]
+            self.kernel = dmode(args) # pash args as map
+            # ^^ reduceDimensionality should call kernel for reduced values
             self._embeddings = []
 
 
