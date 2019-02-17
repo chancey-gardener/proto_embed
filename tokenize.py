@@ -1,18 +1,12 @@
 #!/usr/bin/python3.6
 # -*- coding: utf-8 -*-
-<<<<<<< HEAD
 from abc import ABC
-from os import chdir as cd, getcwd as pwd
-=======
 from os import chdir as cd, getcwd as pwd, listdir as ls
->>>>>>> ad27b97ff9cc196d178edd7ac2552597830a90ee
-cwd = pwd()
-#cd('/usr/lib/python3.6')
-import sys, json
+import sys, json, numpy as np
 from collections import Counter
-import numpy as np
-
-#from multiprocessing import pool
+from sklearn.manifold import TSNE
+from multiprocessing import pool
+rroot=pwd()
 
 PUNCT = '.,;:?!'
 APOST = "'"
@@ -240,23 +234,22 @@ class WordEmbedder:
         # to its output
         # Ok, so the WordEmbedder class should store compressed env vectors,
         # write to file, so 
-<<<<<<< HEAD
-        for datafield in dselect:
-            dset = self.data[datafield]
-                            
-=======
         dfiles = ls(self.dataPath)
         for datafield in dselect:
-                # get all datafiles containing tag in select criteria
-                hasfield = [fname for fname in dfiles
-                                 if datafield in f]
+            # get all datafiles containing tag in select criteria
+            hasfield = [fname for fname in dfiles
+                             if datafield in fname]
+        # now get the stored preprocessed data from the selected files
+        all_dat = {}
+        for fname in hasfield:
+            with open(fname) as dfile:
+                fdat = json.loads(dfile.read())
+                all_dat[fname] = fdat
+        return all_dat
+                
+                    
                 
                 
-                
-                
-                
-                
->>>>>>> ad27b97ff9cc196d178edd7ac2552597830a90ee
         
         
     def vCompress(self, emb):
@@ -315,10 +308,11 @@ if __name__ == '__main__':
         tag = 'table_compress'
         compressed = False
         recompute = False
-        prcsr = WordEmbedder()
+        dpath = 'data'
+        prcsr = WordEmbedder('data')
         mk = 'test_mod'
         #infile = sys.argv[1]
-        infile = 'paradise_lost.txt.rtf'
+        infile = 'data/paradise_lost.txt.rtf'
         with open(infile) as ifdat:
                 text = ifdat.read()
         if recompute:
@@ -342,7 +336,7 @@ if __name__ == '__main__':
                 mean_compressed = sum(cmpd_lengths)/total
                 print('\nMean compressed embedding length: {}\n'.format(mean_compressed))
         else:
-                with open('paradise_lost.txt.rtf_n_4_table_compress.json') as dfile:
+                with open('data/paradise_lost.txt.rtf_n_4_table_compress.json') as dfile:
                         w2vs = json.loads(dfile.read())
                 # so json can't read integer keys. So, change it
                 for w in w2vs:
