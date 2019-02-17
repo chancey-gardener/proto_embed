@@ -1,12 +1,17 @@
 #!/usr/bin/python3.6
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 from abc import ABC
 from os import chdir as cd, getcwd as pwd
+=======
+from os import chdir as cd, getcwd as pwd, listdir as ls
+>>>>>>> ad27b97ff9cc196d178edd7ac2552597830a90ee
 cwd = pwd()
 #cd('/usr/lib/python3.6')
 import sys, json
 from collections import Counter
 import numpy as np
+
 #from multiprocessing import pool
 
 PUNCT = '.,;:?!'
@@ -114,11 +119,12 @@ class WordEmbedder:
 
     '''feed me raw text via the tokenize method,
     '''
-    def __init__(self):
+    def __init__(self, datpath):
         self.models={}
         self._lexicon = set()
         self._lexicon_size = len(self._lexicon)
         self.data = {}
+        self.dataPath = datpath
 
     def updateLexicon(self, newvoc):
         '''newvoc should be a set'''
@@ -234,9 +240,23 @@ class WordEmbedder:
         # to its output
         # Ok, so the WordEmbedder class should store compressed env vectors,
         # write to file, so 
+<<<<<<< HEAD
         for datafield in dselect:
             dset = self.data[datafield]
                             
+=======
+        dfiles = ls(self.dataPath)
+        for datafield in dselect:
+                # get all datafiles containing tag in select criteria
+                hasfield = [fname for fname in dfiles
+                                 if datafield in f]
+                
+                
+                
+                
+                
+                
+>>>>>>> ad27b97ff9cc196d178edd7ac2552597830a90ee
         
         
     def vCompress(self, emb):
