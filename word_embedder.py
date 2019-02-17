@@ -1,11 +1,12 @@
-#!/usr/bin/python3.6
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 from abc import ABC
 from os import chdir as cd, getcwd as pwd, listdir as ls
-import sys, json, numpy as np
+import sys, json
 from collections import Counter
 from sklearn.manifold import TSNE
 from multiprocessing import pool
+import numpy as np
 rroot=pwd()
 
 PUNCT = '.,;:?!'
