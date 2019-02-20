@@ -126,15 +126,49 @@ class WordEmbedder:
         if not isinstance(newvoc, set):
             raise TypeError("New vocabulary param should be represented by set")
         else:
-            self.lexicon.add(newvoc)
-            self.vocab_size = len(self.lexicon)
+            self._lexicon.union(newvoc)
+            self._lexicon_size = len(self._lexicon)
 
     def getLexiconSize(self):
         return self._lexicon_size
 
-    def getLexicon():
+    def getLexicon(self):
         return self._lexicon
+    def readFile(self, fpath):
+	    # fpath should be relative to DATAPATH
+	    fullpath = self.dataPath+'/'+fpath
+	    with open(fullpath) as dfile:
+	        out = self.tokenize(dfile.read())
+	    return out
     
+    def unPackJson(self, fpath, rpath=None):
+        if rpath is not None:
+            rpath = rpath + '/' if not rpath[-1] == '/' else rpath
+            full_path = rpath + fpath
+        else:
+            full_path = self.dataPath+'/'+path
+        with open(full_path) as cdat:
+            dat = json.loads(cdat.read())
+        for wkey in dat:
+            wval = dat[wkey]
+            buff = {}
+            for nz in wval: # nz refers to nonzero
+                if nz.isnumeric(): #  index
+                    buff[int(nz)] = np.float64(wval[nz])
+                else:
+                    buff[nz] = wval[nz]
+                    dat[w] = buff
+            dat[wkey] = buff
+        return dat
+    
+    def rawEnvsToJson(self, envs, ftag):
+        cmpd = self.vCompress(envs)
+        fname = "{}.json".format(ftag)
+        with open(fname, 'w') as jfile:
+            jfile.write(json.dumps(cmpd))
+        
+        
+
     def tokenize(self, text):
         out = []
         idx = 0
@@ -202,13 +236,13 @@ class WordEmbedder:
         returns hash table mapping unique words in
         text to word embeddings computed from
         that text'''
-        out = {word:[] for word in set(toks)}
+        out = {word:np.array() for word in set(toks)}
         schema = sorted(out.keys())
         dims = len(schema)
         tlim = len(toks)
         for idx in range(len(toks)):
                 word = toks[idx]
-                envec = [0]*dims
+                envec = [0]*dims # use np.zeroes here
                 neighborhood =  range(idx-n, idx+n)
                 for i in neighborhood:
                         if 0 <= i < tlim:
@@ -219,7 +253,7 @@ class WordEmbedder:
                 if idx % 1000 == 0:
                         print('environments computed for {} tokens\n'.format(idx))
         # now flatten le matrices
-        print('computing word vectors...')
+        print('compiling recorded environments...')
         out = {k:matrix_mean(out[k]) for k in out}
         return out
     
@@ -246,12 +280,7 @@ class WordEmbedder:
             with open(fname) as dfile:
                 fdat = json.loads(dfile.read())
                 all_dat[fname] = fdat
-        return all_dat
-                
-                    
-                
-                
-        
+        return all_dat        
         
     def vCompress(self, emb):
         '''Compress sparse vector to hash table w/idx for keys and nonzero values as table values '''
