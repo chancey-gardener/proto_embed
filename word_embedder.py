@@ -106,7 +106,7 @@ def tsne(xiv, xjv, dist, sig_squared_i=1/np.sqrt(2)):
 
 dimred = {
     
-        'TSNE': tsne
+        'TSNE': TSNE
 }
 
 
@@ -120,6 +120,9 @@ class WordEmbedder:
         self._lexicon_size = len(self._lexicon)
         self.data = {}
         self.dataPath = datpath
+    
+    def __getitem__(self, key):
+        return self.models[key]
 
     def updateLexicon(self, newvoc):
         '''newvoc should be a set'''
@@ -146,7 +149,7 @@ class WordEmbedder:
             rpath = rpath + '/' if not rpath[-1] == '/' else rpath
             full_path = rpath + fpath
         else:
-            full_path = self.dataPath+'/'+path
+            full_path = self.dataPath+'/'+fpath
         with open(full_path) as cdat:
             dat = json.loads(cdat.read())
         for wkey in dat:
@@ -157,14 +160,14 @@ class WordEmbedder:
                     buff[int(nz)] = np.float64(wval[nz])
                 else:
                     buff[nz] = wval[nz]
-                    dat[w] = buff
+                    #dat[w] = buff
             dat[wkey] = buff
         return dat
     
     def rawEnvsToJson(self, envs, ftag):
-        cmpd = self.vCompress(envs)
+        cmpd = self.vCompressAll(envs)
         fname = "{}.json".format(ftag)
-        with open(fname, 'w') as jfile:
+        with open(self.dataPath+'/'+fname, 'w') as jfile:
             jfile.write(json.dumps(cmpd))
         
         
@@ -219,8 +222,8 @@ class WordEmbedder:
                 out.append(wordbuff)
                 break
         # update lexicon
-        self.updateLexicon(set([i.lower().strip() 
-            for i in out]))
+        out = [i.lower().strip() for i in out]
+        self.updateLexicon(set(out))
         return out
 
     def unpack(self, fpath):
@@ -236,39 +239,39 @@ class WordEmbedder:
         returns hash table mapping unique words in
         text to word embeddings computed from
         that text'''
-        out = {word:np.array() for word in set(toks)}
+        out = {word:[] for word in set(toks)}
         schema = sorted(out.keys())
         dims = len(schema)
         tlim = len(toks)
-        for idx in range(len(toks)):
+        for idx in range(tlim):
                 word = toks[idx]
-                envec = [0]*dims # use np.zeroes here
+                envec = np.zeros(dims)
                 neighborhood =  range(idx-n, idx+n)
                 for i in neighborhood:
                         if 0 <= i < tlim:
                                 neighbor = toks[i]
                                 schema_idx = schema.index(neighbor)
                                 envec[schema_idx] += 1
+                # append
                 out[word].append(envec)
                 if idx % 1000 == 0:
                         print('environments computed for {} tokens\n'.format(idx))
         # now flatten le matrices
         print('compiling recorded environments...')
-        out = {k:matrix_mean(out[k]) for k in out}
+        # len(out[k] == tlim  : always? confirm and quit
+        # computing that shit every time
+        out = {k:sum(out[k])/len(out[k]) for k in out}
         return out
     
 
-    def newModel(self, nbrhd, dselect, dredstrat, mkey=None):
+    def newModel(self, nbrhd, dredstrat,  mkey=None):
         if mkey is None:
-                dat_param = '-'.join(dselect)
+                dat_param = '-'.join(dselect) if dselect is not None else 'custom-text'
                 mkey = "{}_window_{}_data_{}".format(dredstrat, nbrhd, dat_param)
-        self.models[mkey] = Model(nbrhd, dselect, self, 
+        self.models[mkey] = Model(nbrhd, self, 
                                  dimensionality_reduction_mode=dredstrat)
-        print("reducing corpus environment vectors via {}...".format(dredstrat))
-        # call embedder's compileData method, then apply dimensionality reduction
-        # to its output
-        # Ok, so the WordEmbedder class should store compressed env vectors,
-        # write to file, so 
+        
+    def getModelData(self, dselect):
         dfiles = ls(self.dataPath)
         for datafield in dselect:
             # get all datafiles containing tag in select criteria
@@ -295,6 +298,10 @@ class WordEmbedder:
         # add max length to compressed value to reconstruct
         out['MAX'] = max_ind
         return out
+    
+    def vCompressAll(self, embs):
+        return {wkey: self.vCompress(embs[wkey]) 
+                    for wkey in embs}
 
     def vDecompress(self, tab):
         # build list of length
@@ -307,10 +314,10 @@ class WordEmbedder:
 
 class Model:
 
-    def __init__(self, window, data, embedder, dimensionality_reduction_mode='TSNE'):
+    def __init__(self, window, embedder, dimensionality_reduction_mode='TSNE'):
             
             self.window = window
-            self.data = data
+            self.data = []
             self._dimredmode = dimred[dimensionality_reduction_mode]
             self._embeddings = []
 
@@ -322,8 +329,8 @@ class Model:
         else:
             raise ValueError('Model lookup is by word.')
 
-    def reduceDimensionality(self):
-        self._dimredmode() 
+    def reduceDimensionality(self, kwargs):
+        self._dimredmode(**kwargs) 
 
     
         
