@@ -264,12 +264,14 @@ class WordEmbedder:
         return out
     
 
-    def newModel(self, nbrhd, dredstrat,  mkey=None):
-        if mkey is None:
-                dat_param = '-'.join(dselect) if dselect is not None else 'custom-text'
-                mkey = "{}_window_{}_data_{}".format(dredstrat, nbrhd, dat_param)
+    def newModel(self, nbrhd, drparams,  mkey=None):
+        dredstrat = drparams['mode']
+        del drparams['mode']
+        #if mkey is None:
+        #        dat_param = '-'.join(dselect) if dselect is not None else 'custom-text'
+        #        mkey = "{}_window_{}_data_{}".format(dredstrat, nbrhd, dat_param)
         self.models[mkey] = Model(nbrhd, self, 
-                                 dimensionality_reduction_mode=dredstrat)
+                                dredstrat,drparams)
         
     def getModelData(self, dselect):
         dfiles = ls(self.dataPath)
@@ -309,18 +311,28 @@ class WordEmbedder:
         del tab['MAX']
         for key in tab:
                 out[key] += tab[key]
-        return out              
+        return np.array(out)              
 
+    def vDecompressAll(self, embs):
+        return {wkey: self.vDecompress(embs[wkey]) for wkey in embs}
 
 class Model:
 
-    def __init__(self, window, embedder, dimensionality_reduction_mode='TSNE'):
-            
+    def __init__(self,window, embedder, mode, model_params):
+            #  window contains the neighborhood window size
+            # in the training set, comes from newModel method
             self.window = window
             self.data = []
-            self._dimredmode = dimred[dimensionality_reduction_mode]
+            self._dimredmode = mode
+            self._constructDimRedProcedure(kwargs=model_params)
             self._embeddings = []
 
+    def _constructDimRedProcedure(self, kwargs={}):
+        # returns a callable instance of our dimensionality reduction
+        # procedure configured to params specified in model_params
+        constructor = dimred[self._dimredmode]
+        fn = constructor(**kwargs)
+        self._dimredmode = fn
 
 
     def __getitem__(self, key):
@@ -329,8 +341,8 @@ class Model:
         else:
             raise ValueError('Model lookup is by word.')
 
-    def reduceDimensionality(self, kwargs):
-        self._dimredmode(**kwargs) 
+    def reduceDimensionality(self, vec):
+        return self._dimredmode.fit(vec)
 
     
         

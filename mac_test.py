@@ -20,11 +20,15 @@ json_fname = intest[:-4]+"_n_4"
 
 
 text = prcsr.readFile(intest)
-prcsr.newModel(nhood, 'TSNE', mkey=mk)
+#prcsr.newModel(nhood, 'TSNE', mkey=mk)
 
-tparams = {'n_components':300}
-
-reduced = prcsr[mk].reduceDimensionality(tparams)
+tparams = {
+	    'n_components':300,
+	    'mode':'TSNE',
+	    'method':'exact'
+	    }
+prcsr.newModel(nhood, tparams, mkey=mk)
+#reduced = prcsr[mk].reduceDimensionality()
 
 
 if recompute:
@@ -35,11 +39,17 @@ if recompute:
 
 stored_vecs = json_fname + ".json"
 unpacked = prcsr.unPackJson(stored_vecs)
+unpacked = prcsr.vDecompressAll(unpacked)
 ### print metadata stuff
 
 print(stored_vecs)
 print(len(unpacked))
-
+water = 'water'
+waterv = unpacked['water']
+waterv = waterv.reshape(-1, 1)
+reduced = prcsr[mk].reduceDimensionality(waterv)
+print(water)
+print(waterv)
 
 
 
