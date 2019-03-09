@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
 import word_embedder as we
 
 ### a test file for word_embedder.py made for mac
@@ -25,7 +25,7 @@ text = prcsr.readFile(intest)
 tparams = {
 	    'n_components':300,
 	    'mode':'TSNE',
-	    'method':'exact'
+    	    #'method':'exact'
 	    }
 prcsr.newModel(nhood, tparams, mkey=mk)
 #reduced = prcsr[mk].reduceDimensionality()
@@ -38,15 +38,19 @@ if recompute:
 
 
 stored_vecs = json_fname + ".json"
+print('unpacking from {}...'.format(stored_vecs))
 unpacked = prcsr.unPackJson(stored_vecs)
+print('decompressing..')
 unpacked = prcsr.vDecompressAll(unpacked)
 ### print metadata stuff
 
-print(stored_vecs)
-print(len(unpacked))
+#print(stored_vecs)
+#print(len(unpacked))
 water = 'water'
 waterv = unpacked['water']
+print('reshaping embedding representation for water')
 waterv = waterv.reshape(-1, 1)
+print('reducing dimensionality via t-sne')
 reduced = prcsr[mk].reduceDimensionality(waterv)
 print(water)
 print(waterv)
