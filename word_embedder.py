@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/local/bin/python3
 # -*- coding: utf-8 -*-
 from abc import ABC
 from os import chdir as cd, getcwd as pwd, listdir as ls
@@ -129,15 +129,49 @@ class WordEmbedder:
         if not isinstance(newvoc, set):
             raise TypeError("New vocabulary param should be represented by set")
         else:
-            self.lexicon.add(newvoc)
-            self.vocab_size = len(self.lexicon)
+            self._lexicon.union(newvoc)
+            self._lexicon_size = len(self._lexicon)
 
     def getLexiconSize(self):
         return self._lexicon_size
 
-    def getLexicon():
+    def getLexicon(self):
         return self._lexicon
+    def readFile(self, fpath):
+	    # fpath should be relative to DATAPATH
+	    fullpath = self.dataPath+'/'+fpath
+	    with open(fullpath) as dfile:
+	        out = self.tokenize(dfile.read())
+	    return out
     
+    def unPackJson(self, fpath, rpath=None):
+        if rpath is not None:
+            rpath = rpath + '/' if not rpath[-1] == '/' else rpath
+            full_path = rpath + fpath
+        else:
+            full_path = self.dataPath+'/'+fpath
+        with open(full_path) as cdat:
+            dat = json.loads(cdat.read())
+        for wkey in dat:
+            wval = dat[wkey]
+            buff = {}
+            for nz in wval: # nz refers to nonzero
+                if nz.isnumeric(): #  index
+                    buff[int(nz)] = np.float64(wval[nz])
+                else:
+                    buff[nz] = wval[nz]
+                    #dat[w] = buff
+            dat[wkey] = buff
+        return dat
+    
+    def rawEnvsToJson(self, envs, ftag):
+        cmpd = self.vCompressAll(envs)
+        fname = "{}.json".format(ftag)
+        with open(self.dataPath+'/'+fname, 'w') as jfile:
+            jfile.write(json.dumps(cmpd))
+        
+        
+
     def tokenize(self, text):
         out = []
         idx = 0
@@ -188,8 +222,8 @@ class WordEmbedder:
                 out.append(wordbuff)
                 break
         # update lexicon
-        self.updateLexicon(set([i.lower().strip() 
-            for i in out]))
+        out = [i.lower().strip() for i in out]
+        self.updateLexicon(set(out))
         return out
 
     def unpack(self, fpath):
@@ -209,34 +243,37 @@ class WordEmbedder:
         schema = sorted(out.keys())
         dims = len(schema)
         tlim = len(toks)
-        for idx in range(len(toks)):
+        for idx in range(tlim):
                 word = toks[idx]
-                envec = [0]*dims
+                envec = np.zeros(dims)
                 neighborhood =  range(idx-n, idx+n)
                 for i in neighborhood:
                         if 0 <= i < tlim:
                                 neighbor = toks[i]
                                 schema_idx = schema.index(neighbor)
                                 envec[schema_idx] += 1
+                # append
                 out[word].append(envec)
                 if idx % 1000 == 0:
                         print('environments computed for {} tokens\n'.format(idx))
         # now flatten le matrices
-        print('computing word vectors...')
-        out = {k:matrix_mean(out[k]) for k in out}
+        print('compiling recorded environments...')
+        # len(out[k] == tlim  : always? confirm and quit
+        # computing that shit every time
+        out = {k:sum(out[k])/len(out[k]) for k in out}
         return out
     
 
-    def newModel(self, nbrhd, dselect, dredstrat, mkey=None):
-        if mkey is None:
-                dat_param = '-'.join(dselect)
-                mkey = "{}_window_{}_data_{}".format(dredstrat, nbrhd, dat_param)
-        self.models[mkey] = Model(nbrhd, dselect, self, 
-                                 dimensionality_reduction_mode=dredstrat)
-        # call embedder's compileData method, then apply dimensionality reduction
-        # to its output
-        # Ok, so the WordEmbedder class should store compressed env vectors,
-        # write to file, so 
+    def newModel(self, nbrhd, drparams,  mkey=None):
+        dredstrat = drparams['mode']
+        del drparams['mode']
+        #if mkey is None:
+        #        dat_param = '-'.join(dselect) if dselect is not None else 'custom-text'
+        #        mkey = "{}_window_{}_data_{}".format(dredstrat, nbrhd, dat_param)
+        self.models[mkey] = Model(nbrhd, self, 
+                                dredstrat,drparams)
+        
+    def getModelData(self, dselect):
         dfiles = ls(self.dataPath)
         for datafield in dselect:
             # get all datafiles containing tag in select criteria
@@ -248,12 +285,7 @@ class WordEmbedder:
             with open(fname) as dfile:
                 fdat = json.loads(dfile.read())
                 all_dat[fname] = fdat
-        return all_dat
-                
-                    
-                
-                
-        
+        return all_dat        
         
     def vCompress(self, emb):
         '''Compress sparse vector to hash table w/idx for keys and nonzero values as table values '''
@@ -268,6 +300,10 @@ class WordEmbedder:
         # add max length to compressed value to reconstruct
         out['MAX'] = max_ind
         return out
+    
+    def vCompressAll(self, embs):
+        return {wkey: self.vCompress(embs[wkey]) 
+                    for wkey in embs}
 
     def vDecompress(self, tab):
         # build list of length
@@ -275,21 +311,30 @@ class WordEmbedder:
         del tab['MAX']
         for key in tab:
                 out[key] += tab[key]
-        return out              
+        return np.array(out)              
 
+    def vDecompressAll(self, embs):
+        return {wkey: self.vDecompress(embs[wkey]) for wkey in embs}
 
 class Model:
     # TODO: migrate toward passing map args with both modename and
     # specific args
-    def __init__(self, window, data, embedder, dimensionality_reduction_mode='TSNE'):
-            
+
+    def __init__(self,window, embedder, mode, model_params):
+            #  window contains the neighborhood window size
+            # in the training set, comes from newModel method
             self.window = window
-            self.data = data
-            dmode = dimredmode[dimensionality_reduction_mode]
-            self.kernel = dmode(args) # pash args as map
-            # ^^ reduceDimensionality should call kernel for reduced values
+            self.data = []
+            self._dimredmode = mode
+            self._constructDimRedProcedure(kwargs=model_params)
             self._embeddings = []
 
+    def _constructDimRedProcedure(self, kwargs={}):
+        # returns a callable instance of our dimensionality reduction
+        # procedure configured to params specified in model_params
+        constructor = dimred[self._dimredmode]
+        fn = constructor(**kwargs)
+        self._dimredmode = fn
 
 
     def __getitem__(self, key):
@@ -298,84 +343,11 @@ class Model:
         else:
             raise ValueError('Model lookup is by word.')
 
-    def reduceDimensionality(self):
-        self._dimredmode() 
+    def reduceDimensionality(self, vec):
+        return self._dimredmode.fit(vec)
 
     
         
-if __name__ == '__main__':
-        def update():
-                with open('tokenize.py') as pfile:
-                        script = pfile.read()
-                return script
-        ud = lambda: exec(update())
-        # declare constants and read text data from file via command line arg
-        nhood = 4
-        tag = 'table_compress'
-        compressed = False
-        recompute = False
-        dpath = 'data'
-        prcsr = WordEmbedder('data')
-        mk = 'test_mod'
-        #infile = sys.argv[1]
-        infile = 'data/paradise_lost.txt.rtf'
-        with open(infile) as ifdat:
-                text = ifdat.read()
-        if recompute:
-                # tokenize and normalize
-                tokenized = prcsr.tokenize(text)
-                tokenized = [l.lower() for l in tokenized]
-                # compute word frequencies. TODO: make this block a WordEmbedder method
-                freqs = Counter(tokenized)
-                total = len(freqs)
-                freqs = {k:freqs[k]/total for k in freqs}
-                # compute word embeddings
-                w2vs = ngram(tokenized, nhood)
-                if compressed:
-                        comp = 1
-                        print('Compressing...')
-                        for word in w2vs:
-                                w2vs[word]  = prcsr.vCompress(w2vs[word])
-                else:
-                        comp = 0
-                cmpd_lengths = [len(w2vs[v])-comp for v in w2vs]
-                mean_compressed = sum(cmpd_lengths)/total
-                print('\nMean compressed embedding length: {}\n'.format(mean_compressed))
-        else:
-                with open('data/paradise_lost.txt.rtf_n_4_table_compress.json') as dfile:
-                        w2vs = json.loads(dfile.read())
-                # so json can't read integer keys. So, change it
-                for w in w2vs:
-                        print(w)
-                        wval = w2vs[w]
-                        buff = {}
-                        for m in wval: 
-                                if m.isnumeric():
-                                        buff[int(m)] = wval[m]
-                                else:
-                                        buff[m] = wval[m]
-                        w2vs[w] = buff
-        tocp = w2vs['ship']
-        print('Decompressing stored vectors...')
-        w2vs = {k:prcsr.vDecompress(w2vs[k]) for k in w2vs}
-        # convert to numpy stuff
-        w2vs = {k:np.array(list(map(np.float64, w2vs[k]))) for k in w2vs}
-        # dimensionality reduction stuff here
-        #t1 = w2vs ['ship']
-        #t2 = w2vs['water']
-# feed it to pj_given_i
-        ship = 'ship'
-        water = 'water'
-        prcsr.newModel(4, ('law', 'lit'), 'TSNE', mkey=mk)
-        pji = prcsr[mk].reduceDimensionality()
-        print('Probability of water given ship: {}'.format(pji))
 
-        # write embeddings to json file
-        if recompute:
-                outfname = "{}_n_{}_{}.json".format(infile,nhood, tag)
-                with open(outfname, 'w') as ofile:
-                        js = json.dumps(w2vs)
-                        ofile.write(js)
-                print('output written to {}'.format(outfname))
-                
+        
         
