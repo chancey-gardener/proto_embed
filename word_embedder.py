@@ -175,7 +175,7 @@ class WordEmbedder:
     def tokenize(self, text):
         out = []
         idx = 0
-        print('\ntokenizing...\n')
+        #print('\ntokenizing...\n')
         while idx < len(text):
             try:
                 wordbuff = ''
