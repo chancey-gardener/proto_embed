@@ -23,7 +23,7 @@ text = prcsr.readFile(intest)
 #prcsr.newModel(nhood, 'TSNE', mkey=mk)
 
 tparams = {
-	    'n_components':300,
+	    'n_components':3,
 	    'mode':'TSNE',
     	    #'method':'exact'
 	    }
@@ -38,9 +38,9 @@ if recompute:
 
 
 stored_vecs = json_fname + ".json"
-print('unpacking from {}...'.format(stored_vecs))
+print('unpacking from {}...\n'.format(stored_vecs))
 unpacked = prcsr.unPackJson(stored_vecs)
-print('decompressing..')
+print('decompressing..\n')
 unpacked = prcsr.vDecompressAll(unpacked)
 ### print metadata stuff
 
@@ -48,9 +48,11 @@ unpacked = prcsr.vDecompressAll(unpacked)
 #print(len(unpacked))
 water = 'water'
 waterv = unpacked['water']
-print('reshaping embedding representation for water')
+print('reshaping embedding representation for water\n')
 waterv = waterv.reshape(-1, 1)
-print('reducing dimensionality via t-sne')
+original_dcount = len(waterv)
+print('original dimensions: {}\n'.format(original_dcount))
+print('reducing dimensionality via t-sne\n')
 reduced = prcsr[mk].reduceDimensionality(waterv)
 print(water)
 print(waterv)
