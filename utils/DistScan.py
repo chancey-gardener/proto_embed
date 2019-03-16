@@ -12,11 +12,13 @@ class TextFileIterator:
     def __init__(self, dirname):
         self.dirname=dirname
         self.embedder=we.WordEmbedder(DPATH)
+        self.func = self.embedder.bigrams
+
     def __iter__(self):
         files = [os.path.join(self.dirname, p) for p in ls(self.dirname)]
-        print(files)
+        #print(files)
         for f in files:
             with open(f) as tfile:
-                yield self.embedder.tokenize(tfile.read())
+                yield self.func(tfile.read())
     
                 

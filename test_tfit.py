@@ -7,6 +7,8 @@ import json
 
 path = '/home/chanceygardener/LegalNLP/legal_database/data/online_legal_source/test_II'
 
+tokenize = False
+
 this = ls(path)
 this = [join(path, i) for i in this]
 file_count = sum(len(ls(yr)) for yr in this)
@@ -16,13 +18,16 @@ fc = 0
 print('\n\nAnalyzing {} files...\n\n'.format(file_count))
 for year in this:
     for f in ftiter(year):
+        if tokenize:
+            with open('token_dat/bill_{}.json'.format(fc+1), 'w') as dfile:
+                dfile.write(json.dumps(f))
         for word in f:
             dist[word] += 1
             #print(dist.keys())
 
-    print('\n\nEND {} ##\n\n'.format(year))
-    fc += 1
-    if fc % 10 == 0:
+    #print('\n\nEND {} ##\n\n'.format(year))
+        fc += 1
+    #if fc % 10 == 0:
         perc = fc/file_count
         perc *= 100
         perc = round(perc, 2)

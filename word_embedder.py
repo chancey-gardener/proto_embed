@@ -226,6 +226,20 @@ class WordEmbedder:
         self.updateLexicon(set(out))
         return out
 
+    def bigrams(self, text):
+        if isinstance(text, str):
+            toks = self.tokenize(text)
+        elif not isinstance(text, list):
+            raise TypeError
+        out = {}
+        for i in range(len(toks)-2):
+            bigram = (toks[i], toks[i+1])
+            if bigram in out:
+                out[bigram] += 1
+            else:
+                out[bigram] = 1
+        return out
+            
     def unpack(self, fpath):
         with open(fpath) as f:
             dat = fpath.read()
