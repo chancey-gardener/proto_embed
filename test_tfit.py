@@ -7,7 +7,8 @@ import json
 
 path = '/home/chanceygardener/LegalNLP/legal_database/data/online_legal_source/test_II'
 
-tokenize = False
+tokenize = True
+proc = 'getEnvsFromTokens'
 
 this = ls(path)
 this = [join(path, i) for i in this]
@@ -17,10 +18,13 @@ year_count = len(this)
 fc = 0
 print('\n\nAnalyzing {} files...\n\n'.format(file_count))
 for year in this:
-    for f in ftiter(year):
+    for f in ftiter(year, func=proc):
         if tokenize:
-            with open('token_dat/bill_{}.json'.format(fc+1), 'w') as dfile:
-                dfile.write(json.dumps(f))
+            try:
+                with open('token_dat/bill_{}_{}.json'.format(proc, fc+1), 'w') as dfile:
+                    dfile.write(json.dumps(f))
+            except TypeError:
+                print(f)
         for word in f:
             dist[word] += 1
             #print(dist.keys())

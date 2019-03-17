@@ -8,7 +8,6 @@ from sklearn.manifold import TSNE
 from multiprocessing import pool
 import numpy as np
 rroot=pwd()
-
 PUNCT = '.,;:?!'
 APOST = "'"
 
@@ -42,7 +41,7 @@ def matrix_mean(mat):
 def vector_mean(vec):
         '''compute mean value of vector'''
         return sum(vec)/len(vec)
-# REMINDER: computing len(vec twice in variance may cause a bottleneck.
+
 def variance(v):
         mean = vector_mean(v)
         return  sum((i-mean)**2 for i in v)/len(v)
@@ -248,11 +247,13 @@ class WordEmbedder:
         dat = {k:np.array(list(map(np.float64, w2vs[k]))) for k in dat}
         
 
-    def getEnvsFromTokens(self, toks, n):
+    def getEnvsFromTokens(self, toks, n=4, pack=False):
         '''Compute word embeddings given a tokenized text
         returns hash table mapping unique words in
         text to word embeddings computed from
         that text'''
+        if isinstance(toks, str):
+            toks = self.tokenize(toks)
         out = {word:[] for word in set(toks)}
         schema = sorted(out.keys())
         dims = len(schema)
@@ -275,6 +276,8 @@ class WordEmbedder:
         # len(out[k] == tlim  : always? confirm and quit
         # computing that shit every time
         out = {k:sum(out[k])/len(out[k]) for k in out}
+        if pack:
+            out = self.vCompressAll(out)  # self.vcompressall, if pack
         return out
     
 
