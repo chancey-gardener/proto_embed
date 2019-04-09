@@ -23,9 +23,10 @@ text = prcsr.readFile(intest)
 #prcsr.newModel(nhood, 'TSNE', mkey=mk)
 
 tparams = {
-	    'n_components':300,
+	    'n_components':3,
 	    'mode':'TSNE',
-	    'method':'exact'
+	    'n_iter':250
+	    #'method':'exact'
 	    }
 prcsr.newModel(nhood, tparams, mkey=mk)
 #reduced = prcsr[mk].reduceDimensionality()
@@ -46,10 +47,11 @@ print(stored_vecs)
 print(len(unpacked))
 water = 'water'
 waterv = unpacked['water']
+print('reshaping')
 waterv = waterv.reshape(-1, 1)
+print('running TSNE on water vector')
 reduced = prcsr[mk].reduceDimensionality(waterv)
 print(water)
-print(waterv)
-
+print(reduced)
 
 
