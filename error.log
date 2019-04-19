@@ -1,0 +1,428 @@
+In file included from src/skipgram.cc:6:0:
+src/skipgram.h:16:29: error: ‘window_size’ has not been declared
+     vector<string>& tokens, window_size
+                             ^~~~~~~~~~~
+src/skipgram.cc:13:44: error: template argument 2 is invalid
+  unordered_map<string,vector<vector<int> > dist;
+                                            ^~~~
+src/skipgram.cc:13:44: error: template argument 5 is invalid
+src/skipgram.cc:16:8: error: expected initializer before ‘normalize’
+ string normalize(string& raw) {
+        ^~~~~~~~~
+src/skipgram.cc: In function ‘std::set<std::__cxx11::basic_string<char> > getUniqueSet(std::vector<std::__cxx11::basic_string<char> >&)’:
+src/skipgram.cc:36:31: error: cannot convert ‘std::vector<std::__cxx11::basic_string<char> >::iterator {aka __gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char>*, std::vector<std::__cxx11::basic_string<char> > >}’ to ‘int’ in assignment
+  for (int i = 0; i=tokens.end(); i++) {
+                               ^
+src/skipgram.cc:41:6: error: expected ‘(’ before ‘!’ token
+   if !(isincluded); {
+      ^
+src/skipgram.cc:42:10: error: ‘class std::set<std::__cxx11::basic_string<char> >’ has no member named ‘add’
+    vocab.add(tok);
+          ^~~
+src/skipgram.cc: In function ‘std::vector<int> getWindow(std::vector<std::__cxx11::basic_string<char> >&, int, int)’:
+src/skipgram.cc:50:21: error: ‘sub’ was not declared in this scope
+  vector<int> out =  sub(&src[c-w], &src[c+w]);
+                     ^~~
+src/skipgram.cc: In function ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > tokensToSkipgram(std::vector<std::__cxx11::basic_string<char> >&, int)’:
+src/skipgram.cc:60:10: error: expected initializer before ‘vocab’
+  int dim vocab.size(); // should the vocab be alphabetized?
+          ^~~~~
+src/skipgram.cc:61:8: warning: decomposition declaration only available with -std=c++1z or -std=gnu++1z
+  double[dim] out;
+        ^
+src/skipgram.cc:61:8: error: decomposition declaration cannot be declared with type ‘double’
+  double[dim] out;
+        ^~~~~
+src/skipgram.cc:61:8: note: type must be cv-qualified ‘auto’ or reference to cv-qualified ‘auto’
+src/skipgram.cc:61:14: error: expected initializer before ‘out’
+  double[dim] out;
+              ^~~
+src/skipgram.cc:61:14: error: expected ‘,’ or ‘;’ before ‘out’
+src/skipgram.cc:64:33: error: cannot convert ‘std::vector<std::__cxx11::basic_string<char> >::iterator {aka __gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char>*, std::vector<std::__cxx11::basic_string<char> > >}’ to ‘int’ in assignment
+  for (int i = 0; i = tokens.end() {
+                                 ^
+src/skipgram.cc:64:35: error: expected ‘;’ before ‘{’ token
+  for (int i = 0; i = tokens.end() {
+                                   ^
+src/skipgram.cc:64:35: error: expected primary-expression before ‘{’ token
+src/skipgram.cc:64:35: error: expected ‘)’ before ‘{’ token
+src/skipgram.cc:66:29: error: conversion from ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::iterator {aka std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>}’ to non-scalar type ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ requested
+   string lookup = vocab.find(tok); // check in gdb what type this returns
+                   ~~~~~~~~~~^~~~~
+src/skipgram.cc:68:14: error: no match for ‘operator==’ (operand types are ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ and ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::iterator {aka std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>}’)
+   if (lookup == vocab.end()) {
+       ~~~~~~~^~~~~~~~~~~~~~
+In file included from /usr/include/c++/7/bits/stl_algobase.h:64:0,
+                 from /usr/include/c++/7/vector:60,
+                 from src/skipgram.cc:1:
+/usr/include/c++/7/bits/stl_pair.h:443:5: note: candidate: template<class _T1, class _T2> constexpr bool std::operator==(const std::pair<_T1, _T2>&, const std::pair<_T1, _T2>&)
+     operator==(const pair<_T1, _T2>& __x, const pair<_T1, _T2>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_pair.h:443:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::pair<_T1, _T2>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/vector:60,
+                 from src/skipgram.cc:1:
+/usr/include/c++/7/bits/stl_iterator.h:299:5: note: candidate: template<class _Iterator> bool std::operator==(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_Iterator>&)
+     operator==(const reverse_iterator<_Iterator>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:299:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/vector:60,
+                 from src/skipgram.cc:1:
+/usr/include/c++/7/bits/stl_iterator.h:337:5: note: candidate: template<class _IteratorL, class _IteratorR> bool std::operator==(const std::reverse_iterator<_Iterator>&, const std::reverse_iterator<_IteratorR>&)
+     operator==(const reverse_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:337:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::reverse_iterator<_Iterator>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/vector:60,
+                 from src/skipgram.cc:1:
+/usr/include/c++/7/bits/stl_iterator.h:1118:5: note: candidate: template<class _IteratorL, class _IteratorR> bool std::operator==(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorR>&)
+     operator==(const move_iterator<_IteratorL>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:1118:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::move_iterator<_IteratorL>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/vector:60,
+                 from src/skipgram.cc:1:
+/usr/include/c++/7/bits/stl_iterator.h:1124:5: note: candidate: template<class _Iterator> bool std::operator==(const std::move_iterator<_IteratorL>&, const std::move_iterator<_IteratorL>&)
+     operator==(const move_iterator<_Iterator>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:1124:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::move_iterator<_IteratorL>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/vector:61:0,
+                 from src/skipgram.cc:1:
+/usr/include/c++/7/bits/allocator.h:146:5: note: candidate: template<class _T1, class _T2> bool std::operator==(const std::allocator<_Tp1>&, const std::allocator<_T2>&)
+     operator==(const allocator<_T1>&, const allocator<_T2>&)
+     ^~~~~~~~
+/usr/include/c++/7/bits/allocator.h:146:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::allocator<_Tp1>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/vector:61:0,
+                 from src/skipgram.cc:1:
+/usr/include/c++/7/bits/allocator.h:152:5: note: candidate: template<class _Tp> bool std::operator==(const std::allocator<_Tp1>&, const std::allocator<_Tp1>&)
+     operator==(const allocator<_Tp>&, const allocator<_Tp>&)
+     ^~~~~~~~
+/usr/include/c++/7/bits/allocator.h:152:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::allocator<_Tp1>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/vector:64:0,
+                 from src/skipgram.cc:1:
+/usr/include/c++/7/bits/stl_vector.h:1596:5: note: candidate: template<class _Tp, class _Alloc> bool std::operator==(const std::vector<_Tp, _Alloc>&, const std::vector<_Tp, _Alloc>&)
+     operator==(const vector<_Tp, _Alloc>& __x, const vector<_Tp, _Alloc>& __y)
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_vector.h:1596:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::vector<_Tp, _Alloc>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/char_traits.h:40:0,
+                 from /usr/include/c++/7/string:40,
+                 from src/skipgram.cc:2:
+/usr/include/c++/7/bits/postypes.h:216:5: note: candidate: template<class _StateT> bool std::operator==(const std::fpos<_StateT>&, const std::fpos<_StateT>&)
+     operator==(const fpos<_StateT>& __lhs, const fpos<_StateT>& __rhs)
+     ^~~~~~~~
+/usr/include/c++/7/bits/postypes.h:216:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::fpos<_StateT>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/string:52:0,
+                 from src/skipgram.cc:2:
+/usr/include/c++/7/bits/basic_string.h:5997:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
+     operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:5997:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::iterator {aka std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>}’ is not derived from ‘const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/string:52:0,
+                 from src/skipgram.cc:2:
+/usr/include/c++/7/bits/basic_string.h:6005:5: note: candidate: template<class _CharT> typename __gnu_cxx::__enable_if<std::__is_char<_Tp>::__value, bool>::__type std::operator==(const std::__cxx11::basic_string<_CharT>&, const std::__cxx11::basic_string<_CharT>&)
+     operator==(const basic_string<_CharT>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6005:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::iterator {aka std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>}’ is not derived from ‘const std::__cxx11::basic_string<_CharT>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/string:52:0,
+                 from src/skipgram.cc:2:
+/usr/include/c++/7/bits/basic_string.h:6019:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const _CharT*, const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&)
+     operator==(const _CharT* __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6019:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   mismatched types ‘const _CharT*’ and ‘std::__cxx11::basic_string<char>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/string:52:0,
+                 from src/skipgram.cc:2:
+/usr/include/c++/7/bits/basic_string.h:6031:5: note: candidate: template<class _CharT, class _Traits, class _Alloc> bool std::operator==(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&, const _CharT*)
+     operator==(const basic_string<_CharT, _Traits, _Alloc>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:6031:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   mismatched types ‘const _CharT*’ and ‘std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/tuple:39:0,
+                 from /usr/include/c++/7/unordered_map:41,
+                 from src/skipgram.cc:3:
+/usr/include/c++/7/array:252:5: note: candidate: template<class _Tp, long unsigned int _Nm> bool std::operator==(const std::array<_Tp, _Nm>&, const std::array<_Tp, _Nm>&)
+     operator==(const array<_Tp, _Nm>& __one, const array<_Tp, _Nm>& __two)
+     ^~~~~~~~
+/usr/include/c++/7/array:252:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::array<_Tp, _Nm>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/unordered_map:41:0,
+                 from src/skipgram.cc:3:
+/usr/include/c++/7/tuple:1397:5: note: candidate: template<class ... _TElements, class ... _UElements> constexpr bool std::operator==(const std::tuple<_Tps ...>&, const std::tuple<_Elements ...>&)
+     operator==(const tuple<_TElements...>& __t,
+     ^~~~~~~~
+/usr/include/c++/7/tuple:1397:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::tuple<_Tps ...>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/unordered_map:48:0,
+                 from src/skipgram.cc:3:
+/usr/include/c++/7/bits/unordered_map.h:1889:5: note: candidate: template<class _Key, class _Tp, class _Hash, class _Pred, class _Alloc> bool std::operator==(const std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>&, const std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>&)
+     operator==(const unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/unordered_map.h:1889:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/unordered_map:48:0,
+                 from src/skipgram.cc:3:
+/usr/include/c++/7/bits/unordered_map.h:1901:5: note: candidate: template<class _Key, class _Tp, class _Hash, class _Pred, class _Alloc> bool std::operator==(const std::unordered_multimap<_Key, _Tp, _Hash, _Pred, _Alloc>&, const std::unordered_multimap<_Key, _Tp, _Hash, _Pred, _Alloc>&)
+     operator==(const unordered_multimap<_Key, _Tp, _Hash, _Pred, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/unordered_map.h:1901:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::unordered_multimap<_Key, _Tp, _Hash, _Pred, _Alloc>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/set:60:0,
+                 from src/skipgram.cc:4:
+/usr/include/c++/7/bits/stl_tree.h:406:5: note: candidate: template<class _Val> bool std::operator==(const std::_Rb_tree_iterator<_Tp>&, const std::_Rb_tree_const_iterator<_Val>&)
+     operator==(const _Rb_tree_iterator<_Val>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_tree.h:406:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::_Rb_tree_iterator<_Tp>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/set:60:0,
+                 from src/skipgram.cc:4:
+/usr/include/c++/7/bits/stl_tree.h:1533:5: note: candidate: template<class _Key, class _Val, class _KeyOfValue, class _Compare, class _Alloc> bool std::operator==(const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&, const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>&)
+     operator==(const _Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_tree.h:1533:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::_Rb_tree<_Key, _Val, _KeyOfValue, _Compare, _Alloc>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/set:61:0,
+                 from src/skipgram.cc:4:
+/usr/include/c++/7/bits/stl_set.h:913:5: note: candidate: template<class _Key, class _Compare, class _Alloc> bool std::operator==(const std::set<_Key, _Compare, _Alloc>&, const std::set<_Key, _Compare, _Alloc>&)
+     operator==(const set<_Key, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_set.h:913:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::set<_Key, _Compare, _Alloc>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/set:62:0,
+                 from src/skipgram.cc:4:
+/usr/include/c++/7/bits/stl_multiset.h:896:5: note: candidate: template<class _Key, class _Compare, class _Alloc> bool std::operator==(const std::multiset<_Key, _Compare, _Alloc>&, const std::multiset<_Key, _Compare, _Alloc>&)
+     operator==(const multiset<_Key, _Compare, _Alloc>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_multiset.h:896:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::multiset<_Key, _Compare, _Alloc>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/ios_base.h:46:0,
+                 from /usr/include/c++/7/bits/locale_facets.h:43,
+                 from /usr/include/c++/7/locale:40,
+                 from src/skipgram.cc:5:
+/usr/include/c++/7/system_error:292:3: note: candidate: bool std::operator==(const std::error_code&, const std::error_code&)
+   operator==(const error_code& __lhs, const error_code& __rhs) noexcept
+   ^~~~~~~~
+/usr/include/c++/7/system_error:292:3: note:   no known conversion for argument 1 from ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ to ‘const std::error_code&’
+/usr/include/c++/7/system_error:297:3: note: candidate: bool std::operator==(const std::error_code&, const std::error_condition&)
+   operator==(const error_code& __lhs, const error_condition& __rhs) noexcept
+   ^~~~~~~~
+/usr/include/c++/7/system_error:297:3: note:   no known conversion for argument 1 from ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ to ‘const std::error_code&’
+/usr/include/c++/7/system_error:304:3: note: candidate: bool std::operator==(const std::error_condition&, const std::error_code&)
+   operator==(const error_condition& __lhs, const error_code& __rhs) noexcept
+   ^~~~~~~~
+/usr/include/c++/7/system_error:304:3: note:   no known conversion for argument 1 from ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ to ‘const std::error_condition&’
+/usr/include/c++/7/system_error:311:3: note: candidate: bool std::operator==(const std::error_condition&, const std::error_condition&)
+   operator==(const error_condition& __lhs,
+   ^~~~~~~~
+/usr/include/c++/7/system_error:311:3: note:   no known conversion for argument 1 from ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ to ‘const std::error_condition&’
+In file included from /usr/include/c++/7/bits/locale_facets.h:48:0,
+                 from /usr/include/c++/7/locale:40,
+                 from src/skipgram.cc:5:
+/usr/include/c++/7/bits/streambuf_iterator.h:204:5: note: candidate: template<class _CharT, class _Traits> bool std::operator==(const std::istreambuf_iterator<_CharT, _Traits>&, const std::istreambuf_iterator<_CharT, _Traits>&)
+     operator==(const istreambuf_iterator<_CharT, _Traits>& __a,
+     ^~~~~~~~
+/usr/include/c++/7/bits/streambuf_iterator.h:204:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::istreambuf_iterator<_CharT, _Traits>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from src/skipgram.cc:5:
+/usr/include/c++/7/bits/unique_ptr.h:683:5: note: candidate: template<class _Tp, class _Dp, class _Up, class _Ep> bool std::operator==(const std::unique_ptr<_Tp, _Dp>&, const std::unique_ptr<_Up, _Ep>&)
+     operator==(const unique_ptr<_Tp, _Dp>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:683:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from src/skipgram.cc:5:
+/usr/include/c++/7/bits/unique_ptr.h:689:5: note: candidate: template<class _Tp, class _Dp> bool std::operator==(const std::unique_ptr<_Tp, _Dp>&, std::nullptr_t)
+     operator==(const unique_ptr<_Tp, _Dp>& __x, nullptr_t) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:689:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/locale_conv.h:41:0,
+                 from /usr/include/c++/7/locale:43,
+                 from src/skipgram.cc:5:
+/usr/include/c++/7/bits/unique_ptr.h:694:5: note: candidate: template<class _Tp, class _Dp> bool std::operator==(std::nullptr_t, const std::unique_ptr<_Tp, _Dp>&)
+     operator==(nullptr_t, const unique_ptr<_Tp, _Dp>& __x) noexcept
+     ^~~~~~~~
+/usr/include/c++/7/bits/unique_ptr.h:694:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::iterator {aka std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>}’ is not derived from ‘const std::unique_ptr<_Tp, _Dp>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/x86_64-linux-gnu/c++/7/bits/c++allocator.h:33:0,
+                 from /usr/include/c++/7/bits/allocator.h:46,
+                 from /usr/include/c++/7/vector:61,
+                 from src/skipgram.cc:1:
+/usr/include/c++/7/ext/new_allocator.h:155:5: note: candidate: template<class _Tp> bool __gnu_cxx::operator==(const __gnu_cxx::new_allocator<_Tp>&, const __gnu_cxx::new_allocator<_Tp>&)
+     operator==(const new_allocator<_Tp>&, const new_allocator<_Tp>&)
+     ^~~~~~~~
+/usr/include/c++/7/ext/new_allocator.h:155:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const __gnu_cxx::new_allocator<_Tp>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/vector:60,
+                 from src/skipgram.cc:1:
+/usr/include/c++/7/bits/stl_iterator.h:866:5: note: candidate: template<class _Iterator, class _Container> bool __gnu_cxx::operator==(const __gnu_cxx::__normal_iterator<_Iterator, _Container>&, const __gnu_cxx::__normal_iterator<_Iterator, _Container>&)
+     operator==(const __normal_iterator<_Iterator, _Container>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:866:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const __gnu_cxx::__normal_iterator<_Iterator, _Container>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/stl_algobase.h:67:0,
+                 from /usr/include/c++/7/vector:60,
+                 from src/skipgram.cc:1:
+/usr/include/c++/7/bits/stl_iterator.h:859:5: note: candidate: template<class _IteratorL, class _IteratorR, class _Container> bool __gnu_cxx::operator==(const __gnu_cxx::__normal_iterator<_IteratorL, _Container>&, const __gnu_cxx::__normal_iterator<_IteratorR, _Container>&)
+     operator==(const __normal_iterator<_IteratorL, _Container>& __lhs,
+     ^~~~~~~~
+/usr/include/c++/7/bits/stl_iterator.h:859:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const __gnu_cxx::__normal_iterator<_IteratorL, _Container>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/hashtable.h:35:0,
+                 from /usr/include/c++/7/unordered_map:47,
+                 from src/skipgram.cc:3:
+/usr/include/c++/7/bits/hashtable_policy.h:1611:5: note: candidate: template<class _Key, class _Value, class _ExtractKey, class _H1, class _H2, class _Hash, bool __cache> bool std::__detail::operator==(const std::__detail::_Local_iterator_base<_Key, _Value, _ExtractKey, _H1, _H2, _Hash, __cache>&, const std::__detail::_Local_iterator_base<_Key, _Value, _ExtractKey, _H1, _H2, _Hash, __cache>&)
+     operator==(const _Local_iterator_base<_Key, _Value, _ExtractKey,
+     ^~~~~~~~
+/usr/include/c++/7/bits/hashtable_policy.h:1611:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::__detail::_Local_iterator_base<_Key, _Value, _ExtractKey, _H1, _H2, _Hash, __cache>’
+   if (lookup == vocab.end()) {
+                           ^
+In file included from /usr/include/c++/7/bits/hashtable.h:35:0,
+                 from /usr/include/c++/7/unordered_map:47,
+                 from src/skipgram.cc:3:
+/usr/include/c++/7/bits/hashtable_policy.h:319:5: note: candidate: template<class _Value, bool _Cache_hash_code> bool std::__detail::operator==(const std::__detail::_Node_iterator_base<_Value, _Cache_hash_code>&, const std::__detail::_Node_iterator_base<_Value, _Cache_hash_code>&)
+     operator==(const _Node_iterator_base<_Value, _Cache_hash_code>& __x,
+     ^~~~~~~~
+/usr/include/c++/7/bits/hashtable_policy.h:319:5: note:   template argument deduction/substitution failed:
+src/skipgram.cc:68:27: note:   ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ is not derived from ‘const std::__detail::_Node_iterator_base<_Value, _Cache_hash_code>’
+   if (lookup == vocab.end()) {
+                           ^
+src/skipgram.cc:69:20: error: no matching function for call to ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::insert(std::__cxx11::string&)’
+    vocab.insert(tok);
+                    ^
+In file included from /usr/include/c++/7/unordered_map:48:0,
+                 from src/skipgram.cc:3:
+/usr/include/c++/7/bits/unordered_map.h:578:7: note: candidate: std::pair<typename std::_Hashtable<_Key, std::pair<const _Key, _Tp>, _Alloc, std::__detail::_Select1st, _Pred, _Hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<std::__not_<std::__and_<std::__is_fast_hash<_Hash>, std::__detail::__is_noexcept_hash<_Key, _Hash> > >::value, false, true> >::iterator, bool> std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(const value_type&) [with _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >; typename std::_Hashtable<_Key, std::pair<const _Key, _Tp>, _Alloc, std::__detail::_Select1st, _Pred, _Hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<std::__not_<std::__and_<std::__is_fast_hash<_Hash>, std::__detail::__is_noexcept_hash<_Key, _Hash> > >::value, false, true> >::iterator = std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::value_type = std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >]
+       insert(const value_type& __x)
+       ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:578:7: note:   no known conversion for argument 1 from ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ to ‘const value_type& {aka const std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >&}’
+/usr/include/c++/7/bits/unordered_map.h:585:2: note: candidate: template<class _Pair, class> std::pair<typename std::_Hashtable<_Key, std::pair<const _Key, _Tp>, _Alloc, std::__detail::_Select1st, _Pred, _Hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<std::__not_<std::__and_<std::__is_fast_hash<_Hash>, std::__detail::__is_noexcept_hash<_Key, _Hash> > >::value, false, true> >::iterator, bool> std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(_Pair&&) [with _Pair = _Pair; <template-parameter-2-2> = <template-parameter-1-2>; _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >]
+  insert(_Pair&& __x)
+  ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:585:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/7/bits/unordered_map.h:581:32: error: no type named ‘type’ in ‘struct std::enable_if<false, void>’
+       template<typename _Pair, typename = typename
+                                ^~~~~~~~
+/usr/include/c++/7/bits/unordered_map.h:612:7: note: candidate: std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::iterator std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::const_iterator, const value_type&) [with _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::iterator = std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::const_iterator = std::__detail::_Node_const_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::value_type = std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >]
+       insert(const_iterator __hint, const value_type& __x)
+       ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:612:7: note:   candidate expects 2 arguments, 1 provided
+/usr/include/c++/7/bits/unordered_map.h:619:2: note: candidate: template<class _Pair, class> std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::iterator std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::const_iterator, _Pair&&) [with _Pair = _Pair; <template-parameter-2-2> = <template-parameter-1-2>; _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >]
+  insert(const_iterator __hint, _Pair&& __x)
+  ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:619:2: note:   template argument deduction/substitution failed:
+src/skipgram.cc:69:20: note:   candidate expects 2 arguments, 1 provided
+    vocab.insert(tok);
+                    ^
+In file included from /usr/include/c++/7/unordered_map:48:0,
+                 from src/skipgram.cc:3:
+/usr/include/c++/7/bits/unordered_map.h:634:2: note: candidate: template<class _InputIterator> void std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(_InputIterator, _InputIterator) [with _InputIterator = _InputIterator; _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >]
+  insert(_InputIterator __first, _InputIterator __last)
+  ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:634:2: note:   template argument deduction/substitution failed:
+src/skipgram.cc:69:20: note:   candidate expects 2 arguments, 1 provided
+    vocab.insert(tok);
+                    ^
+In file included from /usr/include/c++/7/unordered_map:48:0,
+                 from src/skipgram.cc:3:
+/usr/include/c++/7/bits/unordered_map.h:645:7: note: candidate: void std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(std::initializer_list<typename std::_Hashtable<_Key, std::pair<const _Key, _Tp>, _Alloc, std::__detail::_Select1st, _Pred, _Hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<std::__not_<std::__and_<std::__is_fast_hash<_Hash>, std::__detail::__is_noexcept_hash<_Key, _Hash> > >::value, false, true> >::value_type>) [with _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >; typename std::_Hashtable<_Key, std::pair<const _Key, _Tp>, _Alloc, std::__detail::_Select1st, _Pred, _Hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<std::__not_<std::__and_<std::__is_fast_hash<_Hash>, std::__detail::__is_noexcept_hash<_Key, _Hash> > >::value, false, true> >::value_type = std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >]
+       insert(initializer_list<value_type> __l)
+       ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:645:7: note:   no known conversion for argument 1 from ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ to ‘std::initializer_list<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >’
+src/skipgram.cc:70:27: error: no match for ‘operator=’ (operand types are ‘std::__cxx11::string {aka std::__cxx11::basic_string<char>}’ and ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::iterator {aka std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>}’)
+    lookup = vocab.find(tok);
+                           ^
+In file included from /usr/include/c++/7/string:52:0,
+                 from src/skipgram.cc:2:
+/usr/include/c++/7/bits/basic_string.h:654:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>& std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::operator=(const std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       operator=(const basic_string& __str)
+       ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:654:7: note:   no known conversion for argument 1 from ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::iterator {aka std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>}’ to ‘const std::__cxx11::basic_string<char>&’
+/usr/include/c++/7/bits/basic_string.h:693:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>& std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::operator=(const _CharT*) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       operator=(const _CharT* __s)
+       ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:693:7: note:   no known conversion for argument 1 from ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::iterator {aka std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>}’ to ‘const char*’
+/usr/include/c++/7/bits/basic_string.h:704:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>& std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::operator=(_CharT) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       operator=(_CharT __c)
+       ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:704:7: note:   no known conversion for argument 1 from ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::iterator {aka std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>}’ to ‘char’
+/usr/include/c++/7/bits/basic_string.h:722:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>& std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::operator=(std::__cxx11::basic_string<_CharT, _Traits, _Alloc>&&) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       operator=(basic_string&& __str)
+       ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:722:7: note:   no known conversion for argument 1 from ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::iterator {aka std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>}’ to ‘std::__cxx11::basic_string<char>&&’
+/usr/include/c++/7/bits/basic_string.h:776:7: note: candidate: std::__cxx11::basic_string<_CharT, _Traits, _Alloc>& std::__cxx11::basic_string<_CharT, _Traits, _Alloc>::operator=(std::initializer_list<_Tp>) [with _CharT = char; _Traits = std::char_traits<char>; _Alloc = std::allocator<char>]
+       operator=(initializer_list<_CharT> __l)
+       ^~~~~~~~
+/usr/include/c++/7/bits/basic_string.h:776:7: note:   no known conversion for argument 1 from ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::iterator {aka std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>}’ to ‘std::initializer_list<char>’

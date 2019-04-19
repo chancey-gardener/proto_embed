@@ -1,0 +1,110 @@
+In file included from src/skipgram_II.cc:6:0:
+src/skipgram.h:16:29: error: ‘window_size’ has not been declared
+     vector<string>& tokens, window_size
+                             ^~~~~~~~~~~
+src/skipgram_II.cc:13:44: error: template argument 2 is invalid
+  unordered_map<string,vector<vector<int> > dist;
+                                            ^~~~
+src/skipgram_II.cc:13:44: error: template argument 5 is invalid
+src/skipgram_II.cc:16:8: error: expected initializer before ‘normalize’
+ string normalize(string& raw) {
+        ^~~~~~~~~
+src/skipgram_II.cc: In function ‘std::set<std::__cxx11::basic_string<char> > getUniqueSet(std::vector<std::__cxx11::basic_string<char> >&)’:
+src/skipgram_II.cc:36:31: error: cannot convert ‘std::vector<std::__cxx11::basic_string<char> >::iterator {aka __gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char>*, std::vector<std::__cxx11::basic_string<char> > >}’ to ‘int’ in assignment
+  for (int i = 0; i=tokens.end(); i++) {
+                               ^
+src/skipgram_II.cc:41:6: error: expected ‘(’ before ‘!’ token
+   if !(isincluded); {
+      ^
+src/skipgram_II.cc:42:10: error: ‘class std::set<std::__cxx11::basic_string<char> >’ has no member named ‘add’
+    vocab.add(tok);
+          ^~~
+src/skipgram_II.cc: In function ‘std::vector<int> getWindow(std::vector<std::__cxx11::basic_string<char> >&, int, int)’:
+src/skipgram_II.cc:50:21: error: ‘sub’ was not declared in this scope
+  vector<int> out =  sub(&src[c-w], &src[c+w]);
+                     ^~~
+src/skipgram_II.cc: In function ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > tokensToSkipgram(std::vector<std::__cxx11::basic_string<char> >&, int)’:
+src/skipgram_II.cc:60:10: error: expected initializer before ‘vocab’
+  int dim vocab.size(); // should the vocab be alphabetized?
+          ^~~~~
+src/skipgram_II.cc:61:8: warning: decomposition declaration only available with -std=c++1z or -std=gnu++1z
+  double[dim] out;
+        ^
+src/skipgram_II.cc:61:8: error: decomposition declaration cannot be declared with type ‘double’
+  double[dim] out;
+        ^~~~~
+src/skipgram_II.cc:61:8: note: type must be cv-qualified ‘auto’ or reference to cv-qualified ‘auto’
+src/skipgram_II.cc:61:14: error: expected initializer before ‘out’
+  double[dim] out;
+              ^~~
+src/skipgram_II.cc:61:14: error: expected ‘,’ or ‘;’ before ‘out’
+src/skipgram_II.cc:64:33: error: cannot convert ‘std::vector<std::__cxx11::basic_string<char> >::iterator {aka __gnu_cxx::__normal_iterator<std::__cxx11::basic_string<char>*, std::vector<std::__cxx11::basic_string<char> > >}’ to ‘int’ in assignment
+  for (int i = 0; i = tokens.end() {
+                                 ^
+src/skipgram_II.cc:64:35: error: expected ‘;’ before ‘{’ token
+  for (int i = 0; i = tokens.end() {
+                                   ^
+src/skipgram_II.cc:64:35: error: expected primary-expression before ‘{’ token
+src/skipgram_II.cc:64:35: error: expected ‘)’ before ‘{’ token
+src/skipgram_II.cc:66:17: error: ‘m’ was not declared in this scope
+   auto lookup = m.find(tok);
+                 ^
+src/skipgram_II.cc:70:22: error: type/value mismatch at argument 2 in template parameter list for ‘template<class _T1, class _T2> struct std::pair’
+    pair<string,vector> new_word (tok, new vector&);
+                      ^
+src/skipgram_II.cc:70:22: note:   expected a type, got ‘vector’
+src/skipgram_II.cc:70:43: error: invalid use of template-name ‘std::vector’ without an argument list
+    pair<string,vector> new_word (tok, new vector&);
+                                           ^~~~~~
+src/skipgram_II.cc:70:43: note: class template argument deduction is only available with -std=c++1z or -std=gnu++1z
+In file included from /usr/include/c++/7/vector:64:0,
+                 from src/skipgram_II.cc:1:
+/usr/include/c++/7/bits/stl_vector.h:216:11: note: ‘template<class _Tp, class _Alloc> class std::vector’ declared here
+     class vector : protected _Vector_base<_Tp, _Alloc>
+           ^~~~~~
+src/skipgram_II.cc:70:50: error: expected primary-expression before ‘)’ token
+    pair<string,vector> new_word (tok, new vector&);
+                                                  ^
+src/skipgram_II.cc:70:50: error: expression list treated as compound expression in initializer [-fpermissive]
+src/skipgram_II.cc:71:25: error: no matching function for call to ‘std::unordered_map<std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >::insert(int&)’
+    vocab.insert(new_word);
+                         ^
+In file included from /usr/include/c++/7/unordered_map:48:0,
+                 from src/skipgram_II.cc:3:
+/usr/include/c++/7/bits/unordered_map.h:578:7: note: candidate: std::pair<typename std::_Hashtable<_Key, std::pair<const _Key, _Tp>, _Alloc, std::__detail::_Select1st, _Pred, _Hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<std::__not_<std::__and_<std::__is_fast_hash<_Hash>, std::__detail::__is_noexcept_hash<_Key, _Hash> > >::value, false, true> >::iterator, bool> std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(const value_type&) [with _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >; typename std::_Hashtable<_Key, std::pair<const _Key, _Tp>, _Alloc, std::__detail::_Select1st, _Pred, _Hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<std::__not_<std::__and_<std::__is_fast_hash<_Hash>, std::__detail::__is_noexcept_hash<_Key, _Hash> > >::value, false, true> >::iterator = std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::value_type = std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >]
+       insert(const value_type& __x)
+       ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:578:7: note:   no known conversion for argument 1 from ‘int’ to ‘const value_type& {aka const std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >&}’
+/usr/include/c++/7/bits/unordered_map.h:585:2: note: candidate: template<class _Pair, class> std::pair<typename std::_Hashtable<_Key, std::pair<const _Key, _Tp>, _Alloc, std::__detail::_Select1st, _Pred, _Hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<std::__not_<std::__and_<std::__is_fast_hash<_Hash>, std::__detail::__is_noexcept_hash<_Key, _Hash> > >::value, false, true> >::iterator, bool> std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(_Pair&&) [with _Pair = _Pair; <template-parameter-2-2> = <template-parameter-1-2>; _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >]
+  insert(_Pair&& __x)
+  ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:585:2: note:   template argument deduction/substitution failed:
+/usr/include/c++/7/bits/unordered_map.h:581:32: error: no type named ‘type’ in ‘struct std::enable_if<false, void>’
+       template<typename _Pair, typename = typename
+                                ^~~~~~~~
+/usr/include/c++/7/bits/unordered_map.h:612:7: note: candidate: std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::iterator std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::const_iterator, const value_type&) [with _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::iterator = std::__detail::_Node_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::const_iterator = std::__detail::_Node_const_iterator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >, false, true>; std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::value_type = std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >]
+       insert(const_iterator __hint, const value_type& __x)
+       ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:612:7: note:   candidate expects 2 arguments, 1 provided
+/usr/include/c++/7/bits/unordered_map.h:619:2: note: candidate: template<class _Pair, class> std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::iterator std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::const_iterator, _Pair&&) [with _Pair = _Pair; <template-parameter-2-2> = <template-parameter-1-2>; _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >]
+  insert(const_iterator __hint, _Pair&& __x)
+  ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:619:2: note:   template argument deduction/substitution failed:
+src/skipgram_II.cc:71:25: note:   candidate expects 2 arguments, 1 provided
+    vocab.insert(new_word);
+                         ^
+In file included from /usr/include/c++/7/unordered_map:48:0,
+                 from src/skipgram_II.cc:3:
+/usr/include/c++/7/bits/unordered_map.h:634:2: note: candidate: template<class _InputIterator> void std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(_InputIterator, _InputIterator) [with _InputIterator = _InputIterator; _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >]
+  insert(_InputIterator __first, _InputIterator __last)
+  ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:634:2: note:   template argument deduction/substitution failed:
+src/skipgram_II.cc:71:25: note:   candidate expects 2 arguments, 1 provided
+    vocab.insert(new_word);
+                         ^
+In file included from /usr/include/c++/7/unordered_map:48:0,
+                 from src/skipgram_II.cc:3:
+/usr/include/c++/7/bits/unordered_map.h:645:7: note: candidate: void std::unordered_map<_Key, _Tp, _Hash, _Pred, _Alloc>::insert(std::initializer_list<typename std::_Hashtable<_Key, std::pair<const _Key, _Tp>, _Alloc, std::__detail::_Select1st, _Pred, _Hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<std::__not_<std::__and_<std::__is_fast_hash<_Hash>, std::__detail::__is_noexcept_hash<_Key, _Hash> > >::value, false, true> >::value_type>) [with _Key = std::__cxx11::basic_string<char>; _Tp = std::vector<std::vector<int> >; _Hash = std::hash<std::__cxx11::basic_string<char> >; _Pred = std::equal_to<std::__cxx11::basic_string<char> >; _Alloc = std::allocator<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >; typename std::_Hashtable<_Key, std::pair<const _Key, _Tp>, _Alloc, std::__detail::_Select1st, _Pred, _Hash, std::__detail::_Mod_range_hashing, std::__detail::_Default_ranged_hash, std::__detail::_Prime_rehash_policy, std::__detail::_Hashtable_traits<std::__not_<std::__and_<std::__is_fast_hash<_Hash>, std::__detail::__is_noexcept_hash<_Key, _Hash> > >::value, false, true> >::value_type = std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > >]
+       insert(initializer_list<value_type> __l)
+       ^~~~~~
+/usr/include/c++/7/bits/unordered_map.h:645:7: note:   no known conversion for argument 1 from ‘int’ to ‘std::initializer_list<std::pair<const std::__cxx11::basic_string<char>, std::vector<std::vector<int> > > >’

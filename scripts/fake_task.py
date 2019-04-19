@@ -18,11 +18,20 @@ class Perceptron:
         self.input_weights = [np.float64() for i in range(len(n_inputs))]
         self.n_outputs = n_outputs # idx corresponds to inputs in next layer
         self.threshold=activation_weight
+        self.knsize = 1
 
     def _set_input_weights(self, arr):
         if len(arr) != len(self.input_weights):
             raise IndexError(pio_ermsg.format(len(arr), len(self.input_weights)))
         self.input_weights = arr
+
+    def _update(self, wval, step_size):
+        total = (self.ksize*self.threshold) + wval
+        self.ksize += 1
+        self.threshold =  total / self.ksize
+
+
+        
 
 
 class FFNet:
@@ -30,14 +39,18 @@ class FFNet:
     def __init__(self, **kwargs):
         matmap = [len(kwargs['input'])] + kwargs['hidden_plan'] + [len(kwargs['output']]
         self.net = [[Perceptron(matmap[i], matmap[i+1]) for i in range(len(matmap)-1)] 
-                                                        for i in range(len(matmap))]
-        self.loss = kwargs['loss']
+                                                         for i in range(len(matmap))]
+        self.lossf = kwargs['lossf']
+        self.depth = len(matmap)
+        self.
+
 
     def learn(self, invec):
         pos = 0
         self._set_input_weights(invec)
         while i < len(self.net):
             i += 1
+
 
 
             
