@@ -13,7 +13,7 @@ using namespace std;
 string normalize(string& raw);
 // get a skipgram model from vector of tokens
 unordered_map<string,vector<vector<int> > > tokensToSkipgram(
-				vector<string>& tokens, window_size
+				vector<string>& tokens, int window_size
 				);
 
 

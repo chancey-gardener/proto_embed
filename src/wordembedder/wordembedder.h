@@ -12,14 +12,15 @@ class WordEmbedder {
 	private:
 			string corpusName;
 	public:
+			WordEmbedder(string corpusName);
 			//get and set corpus name
 			string getCorpusName();
-			void setCorpusName();
+			//void setCorpusName(string name);
 			//tokenize from file
-			vector<string> tokenize(string& fname);
+			vector<string> tokensFromFile(string& fname);
 			//skipgram from tokens
-			unordered_map<string,vector<vector<int> > 
-					skipgram (vector<string>& tokens);
+			unordered_map<string,vector<vector<int>> > 
+					skipgram (vector<string>& tokens, int wsize);
 
 };
 

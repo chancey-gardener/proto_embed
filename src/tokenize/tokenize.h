@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 
-const string PUNCT;
-vector<string> tokenize(string& fname);
+const std::string PUNCT;
+std::vector<std::string> tokenize(std::string& fname);
 
 #endif
