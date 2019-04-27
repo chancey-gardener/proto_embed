@@ -18,7 +18,7 @@ string normalize(string& raw) {
 	char c;
 	string out;
 	locale loc;
-	for	(char::iterator i = raw.begin(); i=raw.end(); ++i) {
+	for	(char::iterator i = raw.begin(); i=raw.end(); ++i;) {
 		c = tolower(raw[i], loc);
 		out += c;
 	}
@@ -58,6 +58,7 @@ unordered_map<string,vector<vector<int> > >
 	float out [dim];
 	string tok;
 	// get skipgram embeddings for each word in token
+	int idx;
 	for (vector<string>::iterator it = tokens.begin(); it != tokens.end(); ++it) {
 		idx = it - tokens.begin();
 		tok = normalize(tokens[idx]);
@@ -66,8 +67,9 @@ unordered_map<string,vector<vector<int> > >
 		auto  lookup = vocab.find(tok); 
 		// make a key in the dist mapping if it's not in there yet
 		if (lookup == vocab.end()) {
-			pair<string, vector<int>> new_tok = make_pair(tok, vector<int>() );
-			vocab.insert(new_tok);
+			//pair<string, vector<int>> new_tok = make_pair(tok, vector<int>() );
+			//vector<int> tokdist; 
+			vocab.insert(tok, vector<vector<int>>());
 			lookup = vocab.find(tok);
 		}
 		// get local environment for the current token
