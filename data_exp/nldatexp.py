@@ -103,7 +103,7 @@ Words found in similar contexts:""".format(pos, mc[0], mc[1]))
 
     corpus.collocations()
     print('\n')
-
+m
 
 
 ###############################################################################
