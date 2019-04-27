@@ -2,9 +2,9 @@
 #include <vector>
 #include <string>
 #include <unordered_map>
-#include "tokenize.h"
-#include "skipgram.h"
-#include "wordembedder.h"
+#include "/home/chanceygardener/repos/probed/src/tokenize/tokenize.h"
+#include "/home/chanceygardener/repos/probed/src/skipgram/skipgram.h"
+#include "/home/chanceygardener/repos/probed/src/wordembedder/wordembedder.h"
 
 using namespace std;
 

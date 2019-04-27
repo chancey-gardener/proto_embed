@@ -5,3 +5,4 @@ __pycache__
 data/*
 token_dat/*
 bin/*
+*.o

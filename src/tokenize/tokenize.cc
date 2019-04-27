@@ -7,7 +7,6 @@
 #include "tokenize.h"
 
 using namespace std;
-const string PUNCT = ".,:;-!?";
 
 vector<string> tokenize(string& fname) {
 	ifstream infile;

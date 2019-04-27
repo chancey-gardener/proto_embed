@@ -9,9 +9,6 @@
 using namespace std;
 
 
-struct freqdist {
-	unordered_map<string,vector<vector<int> > dist;
-}
 
 string normalize(string& raw) {
 	// normalize token, lower case
@@ -21,7 +18,7 @@ string normalize(string& raw) {
 	char c;
 	string out;
 	locale loc;
-	for	(int i=0; i=raw.end(); i++) {
+	for	(char::iterator i = raw.begin(); i=raw.end(); ++i) {
 		c = tolower(raw[i], loc);
 		out += c;
 	}
@@ -33,12 +30,12 @@ set<string> getUniqueSet(vector<string>& tokens) {
 	locale loc;
 	string tok;
 	bool isincluded;
-	for (int i = 0; i=tokens.end(); i++) {
+	for (vector<string>::iterator i = tokens.begin(); i != tokens.end(); ++i) {
 		// add to the vocab if you haven't
 		// yet seen it
-		tok = normalize(tokens[i]);
+		tok = normalize(i);
 		isincluded = vocab.find(tok) != vocab.end();
-		if !(isincluded); {
+		if (!isincluded); {
 			vocab.add(tok);
 		}
 	}
@@ -57,21 +54,25 @@ unordered_map<string,vector<vector<int> > >
 {
 
 	unordered_map<string,vector<vector<int> > > vocab;
-	int dim vocab.size(); // should the vocab be alphabetized?
-	double[dim] out;
+	int dim = tokens.size(); // should the vocab be alphabetized?
+	float out [dim];
 	string tok;
 	// get skipgram embeddings for each word in token
-	for (int i = 0; i = tokens.end() {
-		tok = normalize(tokens[i]);
-		string lookup = vocab.find(tok); // check in gdb what type this returns
+	for (vector<string>::iterator it = tokens.begin(); it != tokens.end(); ++it) {
+		idx = it - tokens.begin();
+		tok = normalize(tokens[idx]);
+		
+		//set<string>::iterator lookup
+		auto  lookup = vocab.find(tok); 
 		// make a key in the dist mapping if it's not in there yet
 		if (lookup == vocab.end()) {
-			vocab.insert(tok);
+			pair<string, vector<int>> new_tok = make_pair(tok, vector<int>() );
+			vocab.insert(new_tok);
 			lookup = vocab.find(tok);
 		}
 		// get local environment for the current token
 		// and update the vocab distribution
-		vector<int> env =  getWindow(tokens, window_size, i);
+		vector<int> env =  getWindow(tokens, window_size, idx);
 		vocab[tok].push_back(env);
 		
 	}
