@@ -1,8 +1,11 @@
 #!/usr/bin/python3
 
-import nltk, sys, argparse as ap
+import nltk, sys, re, argparse as ap
 
 ROUND_TO=5
+PUNCT = {",", ".", "\\", ":", ";", "'", '"', "(", ")", "?", "!"}
+RE_NWORD = r'\W'
+PUNCT_FILTER  = lambda s: False if re.fullmatch(RE_NWORD, s) else True
 
 def readfile(path):
     with open(path) as dfile:
@@ -12,9 +15,15 @@ def readfile(path):
 def normalize(w):
     return w.lower().strip()
 
-def wordmat(text):
-    return [[normalize(word) for word in nltk.word_tokenize(sent)] for
+def wordmat(text, ignore_punct=True):
+    if ignore_punct:
+        out = [[normalize(word) for word in nltk.word_tokenize(sent) if PUNCT_FILTER(word)] for
             sent in nltk.sent_tokenize(text)]
+    else:
+        out = [[normalize(word) for word in nltk.word_tokenize(sent)]
+                for sent in nltk.sent_tokenize(sent)]
+    return out
+                
 
 def freqdist(wm, normed=False):
     out = {}
@@ -65,12 +74,16 @@ def cfreqdist(wm, n, reverse=False, normed=False, sent_partition=True):
         tokset = set(word for sent in wm for word in sent)
         dat = [[ngram(sent,i) for i in rrange(len(sent)-n)] 
                       for sent in wm]
+        # now make le dat flat
+        dat = [ng for sent in dat for ng in sent]
 
 
     # now get the frequencies
     out = {w:{} for w in tokset}
     for seq in dat:
         tok, cond = seq[0], seq[1:]
+        #print(tok)
+        #print(cond)
         if cond in out[tok]:
             out[tok][cond] += 1
         else:
@@ -92,9 +105,9 @@ def tok_seq_analyze( **kwargs):
         OPTIONAL: reverse_condition: optional bool; see help message for command line flag --condition_on_subsequents
         
     '''
-    print(dir())
+    #print(dir())
     print("\n\n")
-    print(kwargs.keys())
+    #print(kwargs.keys())
     print("\n\n")
     fpath = kwargs["fpath"]
 
@@ -121,11 +134,13 @@ def tok_seq_analyze( **kwargs):
     return out
 
 def pprintfreqdists(fds, fname):
-    whole_log = "Frequency analysis for {}\n".format(fname)
-
+    title =  "Frequency analysis for {}\n".format(fname)
+    print(title)
+    whole_log = title
     for f in fds:
-        whole_log += _printfreqdist(fds[f], f)+"\n\n"
-        
+        flog = _printfreqdist(fds[f], f)+"\n\n"
+        whole_log += flog
+        #print(flog)
     return whole_log
 
 def _printfreqdist(fd, w):
@@ -135,21 +150,27 @@ def _printfreqdist(fd, w):
     print(header)
     vocab_size = len(fd)
     if w == 1:
+        print(fd)
         for tok in fd:
             prob = round(fd[tok], ROUND_TO)
-            line = "\t\t{}: {}".format(tok, pct_f)
+            line = "\t\t{}: {}".format(tok, prob)
+            if fd[tok] > 1:
+                print(line)
             strlog += "\n" + line
     else:
         for tok in fd:
             wtitle = "\n\t\tConditional Frequency of: {}".format(fd[tok])
-        for cseq in sorted(fd[tok].items(), key=lambda p: p[1]):
-            seq, n_occurrences = ' '.join(cw for cw in cseq[0]), cseq[1]
-            cnprob = n_occurrences/vocab_size
+            fditer = sorted(fd[tok].items(), key=lambda p: p[1])
+            #print(fditer)
+            for cseq in fditer:
+                seq, n_occurrences = ' '.join(cw for cw in cseq[0]), cseq[1]
+                cnprob = n_occurrences/vocab_size
             #TODO: update headers here to reflect whether we're getting subsequent conditions
             # or precedent conditions.
-            line = "\t\t\tProbability of {} given {}: {} | {} total occurrences in file".format(tok, seq, cnprob, n_occurrences)
-            print(line)
-            strlog += "\n" + line
+                line = "\t\t\tp( {} |  {} ): {} ::: {} instances in file".format(tok, seq, cnprob, n_occurrences)
+                if n_occurrences > 2:
+                    print(line)
+                strlog += "\n" + line
     return strlog
 
 
@@ -169,6 +190,8 @@ if __name__ == "__main__":
     aprsr.add_argument("--totxt", type=str, dest="totxt")
     args = aprsr.parse_args()
     # do stuff
+
+
     def main(**kwargs):
         print(kwargs.keys())
         # TODO: clean up argument passing
@@ -180,13 +203,16 @@ if __name__ == "__main__":
             odat = tok_seq_analyze(fpath=f, 
                     reverse_conditioning=condition_on_subsequents,
                     seqs=sequences)
+#            print(odat)
+            log = pprintfreqdists(odat, f)
+
 
                                 
 
     # and here. we. go.
     seqs = args.sequences
     kwmap = {k[0]:k[1] for k in args._get_kwargs()}
-    print(kwmap.keys())
+    #print(kwmap.keys())
     main(**kwmap)
 
 
