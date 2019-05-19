@@ -8,6 +8,7 @@
 
 using namespace std;
 
+// TODO: find bug that makes "i'd" become "i" "p" "d"
 vector<string> tokenize(string& fname) {
 	ifstream infile;
 	infile >> noskipws; // make the stream include whitespace chars
@@ -35,7 +36,6 @@ vector<string> tokenize(string& fname) {
 				out.push_back (wordbuff);
 			//	cout << "\n\nout array:\n" << endl;
 				// print 'out' for debugging
-				int i;
 				for (int i = out.size(); i >=0; i--) {
 						
 			//			cout << out[i-1] << '\n' << endl;
@@ -60,31 +60,12 @@ vector<string> tokenize(string& fname) {
 			wordbuff = "";
 			
 		}
-	}
 	infile.close();
+    }
+	else {
+        cout << "\nError opening input file." << endl;
+
+    }
 	return out;
 }
 
-
-// to run it as a single file thing..
-//int main(int argc, char** argv) {
-//	for (int i=1; i < argc; ++i) {
-//		string ifname = argv[i];
-//		string ofname = ifname + "_" + to_string(i) + ".csv";
-//		ofstream out_n (ofname);
-//		vector<string> tokens = tokenize(ifname);
-//		for (int tki=0; tki < tokens.size(); ++tki) {
-//			 string tok = tokens[tki];
-//			 char app;
-//			 if (tki == tokens.size()-1) {
-//				app  = '\n';
-//			 }
-//			 else {
-//				app = ',';
-//			 }
-//			 out_n << tok+app;
-//		 }
-//		out_n.close();
-//	}	
-//	return 0;
-//} 

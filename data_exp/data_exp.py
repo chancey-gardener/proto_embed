@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-import nltk, sys, re, argparse as ap
+import nltk, sys, re, json, argparse as ap
 
 ROUND_TO=5
 PUNCT = {",", ".", "\\", ":", ";", "'", '"', "(", ")", "?", "!"}
@@ -24,6 +24,27 @@ def wordmat(text, ignore_punct=True):
                 for sent in nltk.sent_tokenize(sent)]
     return out
                 
+
+def fdupdate(news, base):
+    for k in news:
+        if k in base:
+            base[k] += news[k]
+        else:
+            base[k] = news[k]
+    return base
+
+def cfupdate(news, base):
+    for k in news:
+        if k not in base:
+            base[k] = {}
+        for s in news[k]:
+            # TODO: can we do this recursively; it'd be prrtier..
+            if s in base[k]:
+                base[k][s] += news[k][s]
+            else:
+                base[k][s] = news[k][s]
+    return base
+
 
 def freqdist(wm, normed=False):
     out = {}
@@ -105,10 +126,6 @@ def tok_seq_analyze( **kwargs):
         OPTIONAL: reverse_condition: optional bool; see help message for command line flag --condition_on_subsequents
         
     '''
-    #print(dir())
-    print("\n\n")
-    #print(kwargs.keys())
-    print("\n\n")
     fpath = kwargs["fpath"]
 
     if len(seqs) == 0:
@@ -140,8 +157,20 @@ def pprintfreqdists(fds, fname):
     for f in fds:
         flog = _printfreqdist(fds[f], f)+"\n\n"
         whole_log += flog
-        #print(flog)
     return whole_log
+
+def cfkeystostring(struct):
+    ns = {}
+    for ik in struct:
+        if ik != 1:
+            for k in struct:
+                ns[k] = {}
+                for sk in struct[k]:
+                    str_sk = str(sk)
+                    ns[k][str_sk] = struct[k][sk]
+        else:
+            ns[ik] = struct[ik]
+    return ns
 
 def _printfreqdist(fd, w):
     ttype = "{} word sequences".format(w) if w > 1 else "single words"
@@ -154,6 +183,7 @@ def _printfreqdist(fd, w):
         for tok in fd:
             prob = round(fd[tok], ROUND_TO)
             line = "\t\t{}: {}".format(tok, prob)
+            # print from here so you can specify what to print to stdout
             if fd[tok] > 1:
                 print(line)
             strlog += "\n" + line
@@ -179,8 +209,8 @@ def _printfreqdist(fd, w):
 if __name__ == "__main__":
     # handle command line arguments
     aprsr = ap.ArgumentParser(description="freqer; a first glancer at the statistical structure of a natural language text file")
-    aprsr.add_argument("-files", required=True, metavar="F", type=str, nargs='+',
-            help="Relative path to a natural language text file for first pass frequency analysis")
+    aprsr.add_argument( metavar="F", type=str, nargs='+',
+            help="Relative path to a natural language text file for first pass frequency analysis", dest="files")
     aprsr.add_argument("--sequences",dest="sequences", metavar="S", type=int,
                         nargs='+',default=[1, 2],
                         help="n, where n tells freqer to return a frequency analysis of n-grams, feed in as many as you want.")
@@ -193,18 +223,42 @@ if __name__ == "__main__":
 
 
     def main(**kwargs):
-        print(kwargs.keys())
         # TODO: clean up argument passing
         files = kwargs['files']
         condition_on_subsequents=kwargs['condition_on_subsequents']
         sequences=kwargs['sequences']
+        all_dat = {}
         for f in files:
             # get data from each file
+            print("Computing word frequencies for {}".format(f))
             odat = tok_seq_analyze(fpath=f, 
-                    reverse_conditioning=condition_on_subsequents,
-                    seqs=sequences)
-#            print(odat)
-            log = pprintfreqdists(odat, f)
+               reverse_conditioning=condition_on_subsequents,
+               seqs=sequences)
+            #log = pprintfreqdists(odat, f)
+            # iterate over seq lengths (keys of odat)
+            for ws in odat:
+                if ws not in all_dat.keys():
+                    all_dat[ws] = odat[ws]
+                else:
+                    # TODO: update this when sequences is fully
+                    # decoupled from conditional sequences
+                    if ws == 1:
+                        fdupdate(odat[ws], all_dat[ws])
+                    else:
+                        cfupdate(odat[ws], all_dat[ws])
+        jsout = kwargs['tojson']
+        log = pprintfreqdists(all_dat, "ALL FILES")
+        if jsout is not None:
+            if not jsout.endswith(".json"):
+                jsout += ".json"
+            with open(jsout, "w") as jfile:
+                # CONVERT TUPLE KEYS TO STRING
+                print(all_dat)
+                jstring = json.dumps(cfkeystostring(all_dat))
+                jfile.write(jstring)
+            print("frequency data written to {}".format(jsout))
+             
+
 
 
                                 

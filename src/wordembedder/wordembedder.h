@@ -19,7 +19,7 @@ class WordEmbedder {
 			//tokenize from file
 			vector<string> tokensFromFile(string& fname);
 			//skipgram from tokens
-			unordered_map<string,vector<vector<int>> > 
+			unordered_map<string,vector<double> >
 					skipgram (vector<string>& tokens, int wsize);
 
 };
