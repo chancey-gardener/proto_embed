@@ -24,10 +24,11 @@ int main() {
 	WordEmbedder emb = WordEmbedder("test");
 	vector<string> tokens = emb.tokensFromFile(infile);
 	//unordered_map<string,vector<double> >* dist = new unordered_map;
-    unordered_map<string,vector<double> > dist = emb.skipgram(tokens, WINDOW);
-    for (pair<string, vector<double> > elem: dist) {
+    unordered_map<string,vector<double> >* dist = new unordered_map<string,vector<double> >;
+    *dist = emb.skipgram(tokens, WINDOW);
+    for (pair<string, vector<double> > elem: *dist) {
         cout << elem.first << " " << elem.second << endl;
     }
-    //delete dist;
+    delete dist;
 	return 0;
 }

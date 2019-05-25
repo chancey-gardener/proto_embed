@@ -17,6 +17,7 @@ WordEmbedder::WordEmbedder(string corpusName)
 		}
 		// tokenize method
 		vector<string>WordEmbedder::tokensFromFile(string& fname) {
+            cout << "\ntokenizeing...\n" << endl;
 			vector<string> tokens = tokenize(fname);
 			return tokens;
 		}
@@ -24,6 +25,7 @@ WordEmbedder::WordEmbedder(string corpusName)
 		// skipgram extractor (takes vector)
 		unordered_map<string,vector<double> >
 			WordEmbedder::skipgram (vector<string>& tokens, int wsize) {
+                    cout << "\n\ncompiling skipgram vectors...\n\n" << endl;
 					unordered_map<string,vector<double>>
 							out = tokensToSkipgram (tokens, wsize);
 				return out;

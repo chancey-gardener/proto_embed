@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/probed.dir/src/freqdist/freqdist.cc.o CMakeFiles/probed.dir/src/skipgram/skipgram.cc.o CMakeFiles/probed.dir/src/tokenize/tokenize.cc.o CMakeFiles/probed.dir/src/wordembedder/wordembedder.cc.o CMakeFiles/probed.dir/src/main.cc.o  -o probed 
