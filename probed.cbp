@@ -8,38 +8,28 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="/home/chanceygardener/repos/probed"/>
+				<Option working_dir="/home/chanceygardener/repos/proto_embed"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="/home/chanceygardener/repos/probed"/>
+				<Option working_dir="/home/chanceygardener/repos/proto_embed"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 clean"/>
-				</MakeCommands>
-			</Target>
-			<Target title="edit_cache">
-				<Option working_dir="/home/chanceygardener/repos/probed"/>
-				<Option type="4"/>
-				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="probed">
-				<Option output="/home/chanceygardener/repos/probed/probed" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/chanceygardener/repos/probed"/>
+				<Option output="/home/chanceygardener/repos/proto_embed/probed" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/chanceygardener/repos/proto_embed"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -54,15 +44,15 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 probed"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 probed"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="probed/fast">
-				<Option output="/home/chanceygardener/repos/probed/probed" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="/home/chanceygardener/repos/probed"/>
+				<Option output="/home/chanceygardener/repos/proto_embed/probed" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/home/chanceygardener/repos/proto_embed"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
@@ -77,41 +67,51 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 probed/fast"/>
-					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/probed/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 probed/fast"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/home/chanceygardener/repos/proto_embed"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j8 -f &quot;/home/chanceygardener/repos/proto_embed/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/chanceygardener/repos/probed/src/freqdist/freqdist.cc">
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/freqdist/freqdist.cc">
 			<Option target="probed"/>
 		</Unit>
-		<Unit filename="/home/chanceygardener/repos/probed/src/freqdist/freqdist.h">
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/freqdist/freqdist.h">
 			<Option target="probed"/>
 		</Unit>
-		<Unit filename="/home/chanceygardener/repos/probed/src/main.cc">
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/main.cc">
 			<Option target="probed"/>
 		</Unit>
-		<Unit filename="/home/chanceygardener/repos/probed/src/skipgram/skipgram.cc">
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.cc">
 			<Option target="probed"/>
 		</Unit>
-		<Unit filename="/home/chanceygardener/repos/probed/src/skipgram/skipgram.h">
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.h">
 			<Option target="probed"/>
 		</Unit>
-		<Unit filename="/home/chanceygardener/repos/probed/src/tokenize/tokenize.cc">
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/tokenize/tokenize.cc">
 			<Option target="probed"/>
 		</Unit>
-		<Unit filename="/home/chanceygardener/repos/probed/src/tokenize/tokenize.h">
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/tokenize/tokenize.h">
 			<Option target="probed"/>
 		</Unit>
-		<Unit filename="/home/chanceygardener/repos/probed/src/wordembedder/wordembedder.cc">
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/wordembedder/wordembedder.cc">
 			<Option target="probed"/>
 		</Unit>
-		<Unit filename="/home/chanceygardener/repos/probed/src/wordembedder/wordembedder.h">
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/wordembedder/wordembedder.h">
 			<Option target="probed"/>
 		</Unit>
-		<Unit filename="/home/chanceygardener/repos/probed/CMakeLists.txt">
+		<Unit filename="/home/chanceygardener/repos/proto_embed/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

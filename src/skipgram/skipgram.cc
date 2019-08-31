@@ -146,7 +146,7 @@ unordered_map<string,vector<double>>
     unordered_map<string,vector<double>> skipgrams;
     // per token word
     for (int widx = 0; widx != vocab_size; ++widx) {
-        vector<double> n_hot = vector<double>(schema.size(), 0.0); // INVALID READ/WRITE declared here
+        double n_hot[vocab_size]; // INVALID READ/WRITE declared here
         // vocab lookup
         string w = schema[widx];
         vector<vector<string> > wscope = voc_inst.find(w)->second;
@@ -174,7 +174,9 @@ unordered_map<string,vector<double>>
         for (int i = 0; i < vocab_size; i++) {
             n_hot[i] = n_hot[i] / (instance_count);
         }
-        skipgrams.insert(std::make_pair(w, n_hot));
+        vector<double> skipgram_entry (vocab_size);
+        copy(n_hot, n_hot+vocab_size, skipgram_entry.begin());
+        skipgrams.insert(std::make_pair(w, skipgram_entry));
         }
         return skipgrams;
     }

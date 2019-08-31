@@ -1,5 +1,5 @@
 #include <iostream>
-#include "/home/chanceygardener/repos/probed/src/wordembedder/wordembedder.h"
+#include "/home/chanceygardener/repos/proto_embed/src/wordembedder/wordembedder.h"
 #include <vector>
 #include <algorithm>
 #include <iterator>
@@ -20,7 +20,7 @@ using namespace std;
 const int WINDOW = 4;
 
 int main() {
-	string infile = "/home/chanceygardener/repos/probed/data/raw/paradise_lost.txt";
+	string infile = "/home/chanceygardener/repos/proto_embed/data/raw/paradise_lost.txt";
 	WordEmbedder emb = WordEmbedder("test");
 	vector<string> tokens = emb.tokensFromFile(infile);
 	//unordered_map<string,vector<double> >* dist = new unordered_map;

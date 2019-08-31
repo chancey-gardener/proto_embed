@@ -4,11 +4,11 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/chanceygardener/repos/probed/src/freqdist/freqdist.cc" "/home/chanceygardener/repos/probed/CMakeFiles/probed.dir/src/freqdist/freqdist.cc.o"
-  "/home/chanceygardener/repos/probed/src/main.cc" "/home/chanceygardener/repos/probed/CMakeFiles/probed.dir/src/main.cc.o"
-  "/home/chanceygardener/repos/probed/src/skipgram/skipgram.cc" "/home/chanceygardener/repos/probed/CMakeFiles/probed.dir/src/skipgram/skipgram.cc.o"
-  "/home/chanceygardener/repos/probed/src/tokenize/tokenize.cc" "/home/chanceygardener/repos/probed/CMakeFiles/probed.dir/src/tokenize/tokenize.cc.o"
-  "/home/chanceygardener/repos/probed/src/wordembedder/wordembedder.cc" "/home/chanceygardener/repos/probed/CMakeFiles/probed.dir/src/wordembedder/wordembedder.cc.o"
+  "/home/chanceygardener/repos/proto_embed/src/freqdist/freqdist.cc" "/home/chanceygardener/repos/proto_embed/CMakeFiles/probed.dir/src/freqdist/freqdist.cc.o"
+  "/home/chanceygardener/repos/proto_embed/src/main.cc" "/home/chanceygardener/repos/proto_embed/CMakeFiles/probed.dir/src/main.cc.o"
+  "/home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.cc" "/home/chanceygardener/repos/proto_embed/CMakeFiles/probed.dir/src/skipgram/skipgram.cc.o"
+  "/home/chanceygardener/repos/proto_embed/src/tokenize/tokenize.cc" "/home/chanceygardener/repos/proto_embed/CMakeFiles/probed.dir/src/tokenize/tokenize.cc.o"
+  "/home/chanceygardener/repos/proto_embed/src/wordembedder/wordembedder.cc" "/home/chanceygardener/repos/proto_embed/CMakeFiles/probed.dir/src/wordembedder/wordembedder.cc.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
