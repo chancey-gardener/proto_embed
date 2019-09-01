@@ -143,6 +143,11 @@ unordered_map<string,vector<double>>
     // declare and populate skipgram
     unordered_map<string,vector<double>> skipgrams;
     // per token word
+
+    // the following block is iterating over previously accumulated contexts
+    // of unique tokens. Therefore this block's steps should be
+    // independent and potentially executed in parallel.
+
     for (int widx = 0; widx != vocab_size; ++widx) {
         double n_hot[vocab_size];
         // vocab lookup
@@ -154,9 +159,8 @@ unordered_map<string,vector<double>>
             // per word in instance
             int wc_check = 0;
             for (string neighbor : en) {
-                // watch the following two lines when they come up
-                // You sure you iteratin' over wtf you think you iteratin' over bruh?
-                vector<string>::const_iterator schidx = find(schema.begin(), schema.end(), neighbor);
+                vector<string>::const_iterator schidx = find(schema.begin(),
+                        schema.end(), neighbor);
                 int ind = distance(schema.cbegin(), schidx);
                 //cout << ind << " " << wc_check << endl;
                 n_hot[ind] += 1.0;

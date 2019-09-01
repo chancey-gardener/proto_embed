@@ -21,14 +21,6 @@ const int WINDOW = 4;
 
 int main(int argc, char* argv[]) {
 	WordEmbedder emb = WordEmbedder("test");
-
-//	string hard_code_path =
-//	        "/home/chanceygardener/repos/proto_embed/data/raw/paradise_lost.txt";
-//	//vector<string> *test = new vector<string>;
-//	vector<string> test = emb.tokensFromFile(hard_code_path);
-//	cout << "processed hard coded path.." << "\n" << endl;
-//	cout << test << "\n" << endl;
-
     vector<string> tokens;
     tokens = emb.tokensFromFile(argc-1, argv+1);
 	//unordered_map<string,vector<double> >* dist = new unordered_map;
