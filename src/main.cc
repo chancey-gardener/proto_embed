@@ -27,7 +27,6 @@ int main(int argc, char* argv[]) {
 	cout << test;
 
 	vector<string> *tokens = new vector<string>;
-    // CHANCE&garden1tcl3ft!
 	for (char **fpath_point=argv+1; *fpath_point != argv[argc]; fpath_point++) {
 	    string fpath = *fpath_point;
 	    cout << fpath << endl;

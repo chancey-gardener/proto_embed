@@ -12,12 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="858948ca-dd27-4d66-bf61-c5dd5256ccb2" name="Default" comment="use vector&lt;double&gt; in tokenstoskipgram, small fixes, etc.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeFiles/probed.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/probed.dir/CXX.includecache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/probed" beforeDir="false" afterPath="$PROJECT_DIR$/probed" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/skipgram/skipgram.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/skipgram/skipgram.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/wordembedder/wordembedder.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/wordembedder/wordembedder.cc" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +76,7 @@
       <workItem from="1556775583288" duration="107429000" />
       <workItem from="1558206593486" duration="21830000" />
       <workItem from="1566183787033" duration="612000" />
-      <workItem from="1567269174906" duration="17182000" />
+      <workItem from="1567269174906" duration="17518000" />
     </task>
     <servers />
   </component>
@@ -115,7 +110,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/main.cc</url>
-          <line>32</line>
+          <line>31</line>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
       </breakpoints>
