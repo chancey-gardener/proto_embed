@@ -19,7 +19,8 @@ WordEmbedder::WordEmbedder(string corpusName)
 		// tokenize method
 		vector<string>WordEmbedder::tokensFromFile(string& fname) {
             cout << "\ntokenizeing...\n" << endl;
-			vector<string> tokens = tokenize(fname);
+			vector<string> tokens;
+			tokens = tokenize(fname);
 			return tokens;
 		}
 

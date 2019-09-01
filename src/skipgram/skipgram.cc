@@ -26,9 +26,7 @@ using namespace std;
 // environments. contains
 // array of length ENV_SIZE
 // containing pointers to schema array.
-struct env {
-    string symbols[ENV_SIZE*2];
-};
+
 
 string normalize(string& raw) {
 	// TODO: make sure that there is, add a check?
@@ -146,13 +144,12 @@ unordered_map<string,vector<double>>
     unordered_map<string,vector<double>> skipgrams;
     // per token word
     for (int widx = 0; widx != vocab_size; ++widx) {
-        double n_hot[vocab_size]; // INVALID READ/WRITE declared here
+        double n_hot[vocab_size];
         // vocab lookup
         string w = schema[widx];
         vector<vector<string> > wscope = voc_inst.find(w)->second;
         // per instance word
         int instance_count = 0;
-        int ws_check = 0;
         for (vector<string> en: wscope) {
             // per word in instance
             int wc_check = 0;
@@ -161,15 +158,12 @@ unordered_map<string,vector<double>>
                 // You sure you iteratin' over wtf you think you iteratin' over bruh?
                 vector<string>::const_iterator schidx = find(schema.begin(), schema.end(), neighbor);
                 int ind = distance(schema.cbegin(), schidx);
-                cout << ind << " "<< wc_check << endl;
+                //cout << ind << " " << wc_check << endl;
                 n_hot[ind] += 1.0;
                 wc_check++;
-                }
-            cout << "\n\n" << endl;
-            instance_count++;
             }
-        ws_check++;
-        cout << "\nword " << ws_check << endl;
+            instance_count++;
+        }
         // divide array
         for (int i = 0; i < vocab_size; i++) {
             n_hot[i] = n_hot[i] / (instance_count);

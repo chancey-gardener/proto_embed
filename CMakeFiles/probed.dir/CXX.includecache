@@ -6,7 +6,21 @@
 
 #IncludeRegexTransform: 
 
-/home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.cc
+/home/chanceygardener/repos/proto_embed/src/main.cc
+iostream
+-
+/home/chanceygardener/repos/proto_embed/src/wordembedder/wordembedder.h
+-
+vector
+-
+algorithm
+-
+iterator
+-
+string
+-
+
+/home/chanceygardener/repos/proto_embed/src/wordembedder/wordembedder.h
 vector
 -
 string
@@ -14,25 +28,5 @@ string
 unordered_map
 -
 set
--
-algorithm
--
-locale
--
-iterator
--
-skipgram.h
-/home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.h
-iostream
--
-
-/home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.h
-string
--
-vector
--
-locale
--
-unordered_map
 -
 
