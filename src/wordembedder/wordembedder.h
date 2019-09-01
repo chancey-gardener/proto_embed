@@ -17,7 +17,7 @@ class WordEmbedder {
 			string getCorpusName();
 			//void setCorpusName(string name);
 			//tokenize from file
-			vector<string> tokensFromFile(string& fname);
+			vector<string> tokensFromFile(int fcount, char* fnames[]);
 			//skipgram from tokens
 			unordered_map<string,vector<double> >
 					skipgram (vector<string>& tokens, int wsize);

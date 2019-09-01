@@ -5,6 +5,6 @@
 #include <string>
 
 const std::string PUNCT;
-std::vector<std::string> tokenize(std::string& fname);
+void tokenize(char* fnames[], int fcount, std::vector<std::string> &tokens);
 
 #endif

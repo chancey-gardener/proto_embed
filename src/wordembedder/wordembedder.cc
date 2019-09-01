@@ -17,10 +17,11 @@ WordEmbedder::WordEmbedder(string corpusName)
 			return corpusName;
 		}
 		// tokenize method
-		vector<string>WordEmbedder::tokensFromFile(string& fname) {
+		vector<string>WordEmbedder::tokensFromFile(int fcount, char* fnames[]) {
             cout << "\ntokenizeing...\n" << endl;
 			vector<string> tokens;
-			tokens = tokenize(fname);
+            tokenize(fnames, fcount,tokens);
+            cout << tokens.size() << "\n" << endl;
 			return tokens;
 		}
 

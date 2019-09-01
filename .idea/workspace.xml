@@ -12,7 +12,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="858948ca-dd27-4d66-bf61-c5dd5256ccb2" name="Default" comment="use vector&lt;double&gt; in tokenstoskipgram, small fixes, etc.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/probed" beforeDir="false" afterPath="$PROJECT_DIR$/probed" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tokenize/tokenize.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokenize/tokenize.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tokenize/tokenize.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/tokenize/tokenize.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wordembedder/wordembedder.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/wordembedder/wordembedder.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/wordembedder/wordembedder.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/wordembedder/wordembedder.h" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -76,7 +82,7 @@
       <workItem from="1556775583288" duration="107429000" />
       <workItem from="1558206593486" duration="21830000" />
       <workItem from="1566183787033" duration="612000" />
-      <workItem from="1567269174906" duration="17518000" />
+      <workItem from="1567269174906" duration="31071000" />
     </task>
     <servers />
   </component>
@@ -104,70 +110,11 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/main.cc</url>
-          <line>22</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/main.cc</url>
-          <line>31</line>
-          <option name="timeStamp" value="9" />
+          <url>file://$PROJECT_DIR$/src/tokenize/tokenize.cc</url>
+          <line>19</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-  </component>
-  <component name="debuggerHistoryManager">
-    <expressions id="evaluateExpression">
-      <expression>
-        <expression-string>dist</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>disst</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>en</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>n_hot.size()</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>src[rit]</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>normalize(src[rit])</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>wscope</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>n_hot</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>skipgrams</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-      <expression>
-        <expression-string>skipgrams*</expression-string>
-        <language-id>ObjectiveC</language-id>
-        <evaluation-mode>EXPRESSION</evaluation-mode>
-      </expression>
-    </expressions>
   </component>
 </project>
