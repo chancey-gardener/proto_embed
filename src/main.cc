@@ -35,9 +35,8 @@ int main(int argc, char* argv[]) {
     unordered_map<string,vector<double> >* dist =
             new unordered_map<string,vector<double> >;
     *dist = emb.skipgram(tokens, WINDOW);
-    for (pair<string, vector<double> > elem: *dist) {
-        cout << elem.first << " " << elem.second << endl;
-    }
+    string ofname = "test_sg_classics.csv";
+    emb.writeToCsv(ofname, *dist);
     delete dist;
 	return 0;
 }

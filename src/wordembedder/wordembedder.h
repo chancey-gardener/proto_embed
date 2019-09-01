@@ -11,6 +11,7 @@ using namespace std;
 class WordEmbedder {
 	private:
 			string corpusName;
+			int unique_tokens_in_model;
 	public:
 			WordEmbedder(string corpusName);
 			//get and set corpus name
@@ -21,6 +22,8 @@ class WordEmbedder {
 			//skipgram from tokens
 			unordered_map<string,vector<double> >
 					skipgram (vector<string>& tokens, int wsize);
+			static void writeToCsv(string& ofname, unordered_map<string,
+			        vector<double>> dat);
 
 };
 

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <fstream>
 #include <unordered_map>
 #include "/home/chanceygardener/repos/proto_embed/src/tokenize/tokenize.h"
 #include "/home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.h"
@@ -33,6 +34,28 @@ WordEmbedder::WordEmbedder(string corpusName)
 							out = tokensToSkipgram (tokens, wsize);
 				return out;
 		}
+
+		void WordEmbedder::writeToCsv(string& ofname,
+                unordered_map<string,vector<double>> dat) {
+
+            ofstream of;
+            cout << "\nwriting to csv\n" << endl;
+            // TODO(chanceygardener) set schema size as WEmb attribute
+            of.open(ofname);
+            of << ","; // so the indices line up in the file.
+            for (pair<string, vector<double> > token: dat) {
+                of << token.first;
+            }
+            of << "\n";
+            for (pair<string, vector<double> > token: dat) {
+                of << token.first << ",";
+                for (double sgval: token.second) {
+                    of << sgval << ",";
+                }
+                of << "\n";
+            }
+            of.close();
+        }
 
 
 

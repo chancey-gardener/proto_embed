@@ -1,5 +1,6 @@
 *.swp
 *.swo
+*.csv
 __pycache__/*
 __pycache__
 data/*
