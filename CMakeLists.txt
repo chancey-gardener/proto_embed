@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD 11)
 add_executable(probed
         src/freqdist/freqdist.cc
         src/freqdist/freqdist.h
-        src/skipgram/skipgram.cc
-        src/skipgram/skipgram.h
+        src/utils/utils.cc
+        src/utils/utils.h
         src/tokenize/tokenize.cc
         src/tokenize/tokenize.h
         src/wordembedder/wordembedder.cc

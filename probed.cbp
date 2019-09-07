@@ -93,16 +93,16 @@
 		<Unit filename="/home/chanceygardener/repos/proto_embed/src/main.cc">
 			<Option target="probed"/>
 		</Unit>
-		<Unit filename="/home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.cc">
-			<Option target="probed"/>
-		</Unit>
-		<Unit filename="/home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.h">
-			<Option target="probed"/>
-		</Unit>
 		<Unit filename="/home/chanceygardener/repos/proto_embed/src/tokenize/tokenize.cc">
 			<Option target="probed"/>
 		</Unit>
 		<Unit filename="/home/chanceygardener/repos/proto_embed/src/tokenize/tokenize.h">
+			<Option target="probed"/>
+		</Unit>
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/utils/utils.cc">
+			<Option target="probed"/>
+		</Unit>
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/utils/utils.h">
 			<Option target="probed"/>
 		</Unit>
 		<Unit filename="/home/chanceygardener/repos/proto_embed/src/wordembedder/wordembedder.cc">

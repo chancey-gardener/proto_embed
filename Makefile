@@ -177,33 +177,6 @@ src/main.cc.s:
 	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/src/main.cc.s
 .PHONY : src/main.cc.s
 
-src/skipgram/skipgram.o: src/skipgram/skipgram.cc.o
-
-.PHONY : src/skipgram/skipgram.o
-
-# target to build an object file
-src/skipgram/skipgram.cc.o:
-	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/src/skipgram/skipgram.cc.o
-.PHONY : src/skipgram/skipgram.cc.o
-
-src/skipgram/skipgram.i: src/skipgram/skipgram.cc.i
-
-.PHONY : src/skipgram/skipgram.i
-
-# target to preprocess a source file
-src/skipgram/skipgram.cc.i:
-	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/src/skipgram/skipgram.cc.i
-.PHONY : src/skipgram/skipgram.cc.i
-
-src/skipgram/skipgram.s: src/skipgram/skipgram.cc.s
-
-.PHONY : src/skipgram/skipgram.s
-
-# target to generate assembly for a file
-src/skipgram/skipgram.cc.s:
-	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/src/skipgram/skipgram.cc.s
-.PHONY : src/skipgram/skipgram.cc.s
-
 src/tokenize/tokenize.o: src/tokenize/tokenize.cc.o
 
 .PHONY : src/tokenize/tokenize.o
@@ -230,6 +203,33 @@ src/tokenize/tokenize.s: src/tokenize/tokenize.cc.s
 src/tokenize/tokenize.cc.s:
 	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/src/tokenize/tokenize.cc.s
 .PHONY : src/tokenize/tokenize.cc.s
+
+src/utils/utils.o: src/utils/utils.cc.o
+
+.PHONY : src/utils/utils.o
+
+# target to build an object file
+src/utils/utils.cc.o:
+	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/src/utils/utils.cc.o
+.PHONY : src/utils/utils.cc.o
+
+src/utils/utils.i: src/utils/utils.cc.i
+
+.PHONY : src/utils/utils.i
+
+# target to preprocess a source file
+src/utils/utils.cc.i:
+	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/src/utils/utils.cc.i
+.PHONY : src/utils/utils.cc.i
+
+src/utils/utils.s: src/utils/utils.cc.s
+
+.PHONY : src/utils/utils.s
+
+# target to generate assembly for a file
+src/utils/utils.cc.s:
+	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/src/utils/utils.cc.s
+.PHONY : src/utils/utils.cc.s
 
 src/wordembedder/wordembedder.o: src/wordembedder/wordembedder.cc.o
 
@@ -273,12 +273,12 @@ help:
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
-	@echo "... src/skipgram/skipgram.o"
-	@echo "... src/skipgram/skipgram.i"
-	@echo "... src/skipgram/skipgram.s"
 	@echo "... src/tokenize/tokenize.o"
 	@echo "... src/tokenize/tokenize.i"
 	@echo "... src/tokenize/tokenize.s"
+	@echo "... src/utils/utils.o"
+	@echo "... src/utils/utils.i"
+	@echo "... src/utils/utils.s"
 	@echo "... src/wordembedder/wordembedder.o"
 	@echo "... src/wordembedder/wordembedder.i"
 	@echo "... src/wordembedder/wordembedder.s"

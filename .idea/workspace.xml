@@ -12,9 +12,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="858948ca-dd27-4d66-bf61-c5dd5256ccb2" name="Default" comment="use vector&lt;double&gt; in tokenstoskipgram, small fixes, etc.">
+      <change afterPath="$PROJECT_DIR$/src/cli/cli.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/cli/cli.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/utils.cc" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/utils/utils.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/Makefile.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/Makefile.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/probed.dir/CXX.includecache" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/probed.dir/CXX.includecache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/probed.dir/DependInfo.cmake" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/probed.dir/DependInfo.cmake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/probed.dir/build.make" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/probed.dir/build.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/probed.dir/depend.internal" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/probed.dir/depend.internal" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/probed.dir/depend.make" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/probed.dir/depend.make" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeFiles/probed.dir/link.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeFiles/probed.dir/link.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/probed" beforeDir="false" afterPath="$PROJECT_DIR$/probed" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/probed.cbp" beforeDir="false" afterPath="$PROJECT_DIR$/probed.cbp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/skipgram/skipgram.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/skipgram/skipgram.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wordembedder/wordembedder.cc" beforeDir="false" afterPath="$PROJECT_DIR$/src/wordembedder/wordembedder.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/wordembedder/wordembedder.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/wordembedder/wordembedder.h" afterDir="false" />
     </list>
@@ -32,7 +49,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1PcqYoE58knb6bMGlekgHT2gRQY" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -80,7 +101,7 @@
       <workItem from="1556775583288" duration="107429000" />
       <workItem from="1558206593486" duration="21830000" />
       <workItem from="1566183787033" duration="612000" />
-      <workItem from="1567269174906" duration="36004000" />
+      <workItem from="1567269174906" duration="56463000" />
     </task>
     <servers />
   </component>
@@ -101,6 +122,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="use vector&lt;double&gt; in tokenstoskipgram, small fixes, etc." />
     <option name="LAST_COMMIT_MESSAGE" value="use vector&lt;double&gt; in tokenstoskipgram, small fixes, etc." />
   </component>

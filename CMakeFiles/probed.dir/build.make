@@ -70,18 +70,18 @@ CMakeFiles/probed.dir/src/freqdist/freqdist.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/probed.dir/src/freqdist/freqdist.cc.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chanceygardener/repos/proto_embed/src/freqdist/freqdist.cc -o CMakeFiles/probed.dir/src/freqdist/freqdist.cc.s
 
-CMakeFiles/probed.dir/src/skipgram/skipgram.cc.o: CMakeFiles/probed.dir/flags.make
-CMakeFiles/probed.dir/src/skipgram/skipgram.cc.o: src/skipgram/skipgram.cc
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chanceygardener/repos/proto_embed/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/probed.dir/src/skipgram/skipgram.cc.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/probed.dir/src/skipgram/skipgram.cc.o -c /home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.cc
+CMakeFiles/probed.dir/src/utils/utils.cc.o: CMakeFiles/probed.dir/flags.make
+CMakeFiles/probed.dir/src/utils/utils.cc.o: src/utils/utils.cc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/chanceygardener/repos/proto_embed/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/probed.dir/src/utils/utils.cc.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/probed.dir/src/utils/utils.cc.o -c /home/chanceygardener/repos/proto_embed/src/utils/utils.cc
 
-CMakeFiles/probed.dir/src/skipgram/skipgram.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/probed.dir/src/skipgram/skipgram.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.cc > CMakeFiles/probed.dir/src/skipgram/skipgram.cc.i
+CMakeFiles/probed.dir/src/utils/utils.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/probed.dir/src/utils/utils.cc.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/chanceygardener/repos/proto_embed/src/utils/utils.cc > CMakeFiles/probed.dir/src/utils/utils.cc.i
 
-CMakeFiles/probed.dir/src/skipgram/skipgram.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/probed.dir/src/skipgram/skipgram.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chanceygardener/repos/proto_embed/src/skipgram/skipgram.cc -o CMakeFiles/probed.dir/src/skipgram/skipgram.cc.s
+CMakeFiles/probed.dir/src/utils/utils.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/probed.dir/src/utils/utils.cc.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/chanceygardener/repos/proto_embed/src/utils/utils.cc -o CMakeFiles/probed.dir/src/utils/utils.cc.s
 
 CMakeFiles/probed.dir/src/tokenize/tokenize.cc.o: CMakeFiles/probed.dir/flags.make
 CMakeFiles/probed.dir/src/tokenize/tokenize.cc.o: src/tokenize/tokenize.cc
@@ -125,7 +125,7 @@ CMakeFiles/probed.dir/src/main.cc.s: cmake_force
 # Object files for target probed
 probed_OBJECTS = \
 "CMakeFiles/probed.dir/src/freqdist/freqdist.cc.o" \
-"CMakeFiles/probed.dir/src/skipgram/skipgram.cc.o" \
+"CMakeFiles/probed.dir/src/utils/utils.cc.o" \
 "CMakeFiles/probed.dir/src/tokenize/tokenize.cc.o" \
 "CMakeFiles/probed.dir/src/wordembedder/wordembedder.cc.o" \
 "CMakeFiles/probed.dir/src/main.cc.o"
@@ -134,7 +134,7 @@ probed_OBJECTS = \
 probed_EXTERNAL_OBJECTS =
 
 probed: CMakeFiles/probed.dir/src/freqdist/freqdist.cc.o
-probed: CMakeFiles/probed.dir/src/skipgram/skipgram.cc.o
+probed: CMakeFiles/probed.dir/src/utils/utils.cc.o
 probed: CMakeFiles/probed.dir/src/tokenize/tokenize.cc.o
 probed: CMakeFiles/probed.dir/src/wordembedder/wordembedder.cc.o
 probed: CMakeFiles/probed.dir/src/main.cc.o

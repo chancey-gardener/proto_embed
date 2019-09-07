@@ -24,11 +24,14 @@ int main(int argc, char* argv[]) {
     vector<string> tokens;
     tokens = emb.tokensFromFile(argc-1, argv+1);
 	//unordered_map<string,vector<double> >* dist = new unordered_map;
-    unordered_map<string,vector<double> >* dist =
-            new unordered_map<string,vector<double> >;
-    *dist = emb.skipgram(tokens, WINDOW);
+    unordered_map<string,vector<double> > dist;
+    dist = emb.skipgram(tokens, WINDOW);
     string ofname = "test_sg_classics.csv";
-    emb.writeToCsv(ofname, *dist);
-    delete dist;
+    emb.writeSkipgramsToCsv(ofname, dist);
+    //delete dist;
+    dist.clear();
+    unordered_map<string,vector<string>> conts =
+            emb.getContextsByToken(tokens, WINDOW);
+
 	return 0;
 }

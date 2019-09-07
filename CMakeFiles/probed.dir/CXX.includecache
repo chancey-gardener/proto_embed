@@ -6,18 +6,36 @@
 
 #IncludeRegexTransform: 
 
-/home/chanceygardener/repos/proto_embed/src/main.cc
-iostream
+/home/chanceygardener/repos/proto_embed/src/tokenize/tokenize.h
+vector
 -
-/home/chanceygardener/repos/proto_embed/src/wordembedder/wordembedder.h
+string
+-
+
+/home/chanceygardener/repos/proto_embed/src/utils/utils.h
+vector
+-
+string
+-
+
+/home/chanceygardener/repos/proto_embed/src/wordembedder/wordembedder.cc
+iostream
 -
 vector
 -
+string
+-
 algorithm
 -
-iterator
+fstream
 -
-string
+unordered_map
+-
+/home/chanceygardener/repos/proto_embed/src/tokenize/tokenize.h
+-
+/home/chanceygardener/repos/proto_embed/src/wordembedder/wordembedder.h
+-
+/home/chanceygardener/repos/proto_embed/src/utils/utils.h
 -
 
 /home/chanceygardener/repos/proto_embed/src/wordembedder/wordembedder.h
@@ -28,5 +46,7 @@ string
 unordered_map
 -
 set
+-
+/home/chanceygardener/repos/proto_embed/src/utils/utils.h
 -
 
