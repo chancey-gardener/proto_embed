@@ -30,7 +30,7 @@ WordEmbedder::WordEmbedder(string corpusName)
 		}
 
         unordered_map<string,vector<vector<string>>>
-        WordEmbedder::getTokensInContext(vector<string>& tokens, int window_size) {
+        WordEmbedder::getTokensInContext(vector<string>& tokens, int window_size, vector<string> schema) {
             // declare skipgram and word environment maps
             unordered_map<string, vector<vector<string>> > voc_inst;
             // get skipgram embeddings for each word in token

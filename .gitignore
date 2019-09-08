@@ -10,3 +10,4 @@ bin/*
 cmake*
 CmakeFiles/*
 Cmake*
+venv/*

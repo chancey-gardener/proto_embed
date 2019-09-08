@@ -20,7 +20,7 @@ class WordEmbedder {
             vector<string>& tokens, int window_size);
 
             unordered_map<string,vector<vector<string>>>
-            getTokensInContext(vector<string>& tokens, int window_size);
+            getTokensInContext(vector<string>& tokens, int window_size, vector<string> schema);
 
 
 
