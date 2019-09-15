@@ -123,6 +123,33 @@ probed/fast:
 	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/build
 .PHONY : probed/fast
 
+src/fake_task/fake_task.o: src/fake_task/fake_task.cc.o
+
+.PHONY : src/fake_task/fake_task.o
+
+# target to build an object file
+src/fake_task/fake_task.cc.o:
+	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/src/fake_task/fake_task.cc.o
+.PHONY : src/fake_task/fake_task.cc.o
+
+src/fake_task/fake_task.i: src/fake_task/fake_task.cc.i
+
+.PHONY : src/fake_task/fake_task.i
+
+# target to preprocess a source file
+src/fake_task/fake_task.cc.i:
+	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/src/fake_task/fake_task.cc.i
+.PHONY : src/fake_task/fake_task.cc.i
+
+src/fake_task/fake_task.s: src/fake_task/fake_task.cc.s
+
+.PHONY : src/fake_task/fake_task.s
+
+# target to generate assembly for a file
+src/fake_task/fake_task.cc.s:
+	$(MAKE) -f CMakeFiles/probed.dir/build.make CMakeFiles/probed.dir/src/fake_task/fake_task.cc.s
+.PHONY : src/fake_task/fake_task.cc.s
+
 src/freqdist/freqdist.o: src/freqdist/freqdist.cc.o
 
 .PHONY : src/freqdist/freqdist.o
@@ -267,6 +294,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... probed"
 	@echo "... edit_cache"
+	@echo "... src/fake_task/fake_task.o"
+	@echo "... src/fake_task/fake_task.i"
+	@echo "... src/fake_task/fake_task.s"
 	@echo "... src/freqdist/freqdist.o"
 	@echo "... src/freqdist/freqdist.i"
 	@echo "... src/freqdist/freqdist.s"

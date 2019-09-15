@@ -2,6 +2,7 @@
 #include <string>
 #include <locale>
 #include <set>
+#include <cmath>
 
 
 using namespace std;
@@ -86,4 +87,28 @@ vector<string> getWindow(vector<string>& src, long wsize, long cind) {
         }
     }
     return win;
+}
+
+vector<double>
+        softmax(vector<double> input,
+                vector<double> output, int i=0,
+                int *exsum=nullptr)  {
+    if (exsum == nullptr) {
+        int den = 0;
+        for (double elem: input) {
+            double e = exp(elem);
+            den += e;
+        }
+        *exsum = den;
+    }
+    output[i] = (exp(input[i]) / *exsum);
+    if (i < output.size()) {
+        i++;
+        return softmax(input, output, i, exsum);
+    }
+    else {
+        return output;
+    }
+
+
 }

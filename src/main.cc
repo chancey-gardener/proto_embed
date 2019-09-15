@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iterator>
 #include <string>
+#include "/home/chanceygardener/repos/proto_embed/src/fake_task/fake_task.h"
 
 
 // FOR TESTING, so's we can print out dem std::vectors.

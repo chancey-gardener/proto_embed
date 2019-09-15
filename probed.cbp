@@ -5,7 +5,7 @@
 		<Option title="probed"/>
 		<Option makefile_is_custom="1"/>
 		<Option compiler="gcc"/>
-		<Option virtualFolders="CMake Files\;"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\usr\;CMake Files\..\..\..\..\usr\lib\;CMake Files\..\..\..\..\usr\lib\cmake\;CMake Files\..\..\..\..\usr\lib\cmake\eigen3\;"/>
 		<Build>
 			<Target title="all">
 				<Option working_dir="/home/chanceygardener/repos/proto_embed"/>
@@ -34,6 +34,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
 					<Add directory="/usr/include/c++/8"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
 					<Add directory="/usr/include/c++/8/backward"/>
@@ -57,6 +58,7 @@
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
+					<Add directory="/usr/include/eigen3"/>
 					<Add directory="/usr/include/c++/8"/>
 					<Add directory="/usr/include/x86_64-linux-gnu/c++/8"/>
 					<Add directory="/usr/include/c++/8/backward"/>
@@ -84,6 +86,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/fake_task/fake_task.cc">
+			<Option target="probed"/>
+		</Unit>
+		<Unit filename="/home/chanceygardener/repos/proto_embed/src/fake_task/fake_task.h">
+			<Option target="probed"/>
+		</Unit>
 		<Unit filename="/home/chanceygardener/repos/proto_embed/src/freqdist/freqdist.cc">
 			<Option target="probed"/>
 		</Unit>
@@ -113,6 +121,15 @@
 		</Unit>
 		<Unit filename="/home/chanceygardener/repos/proto_embed/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="/home/chanceygardener/repos/proto_embed/../../../../usr/lib/cmake/eigen3/Eigen3Config.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\"/>
+		</Unit>
+		<Unit filename="/home/chanceygardener/repos/proto_embed/../../../../usr/lib/cmake/eigen3/Eigen3ConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\"/>
+		</Unit>
+		<Unit filename="/home/chanceygardener/repos/proto_embed/../../../../usr/lib/cmake/eigen3/Eigen3Targets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\usr\lib\cmake\eigen3\"/>
 		</Unit>
 	</Project>
 </CodeBlocks_project_file>
